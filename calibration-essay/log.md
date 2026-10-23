@@ -26,3 +26,11 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 - Stated 17 variants: actual-world, Dunn's nearby worlds, hypothetical frequency, normal worlds, conditional on evidence, reference classes, multicalibration, inclusive calibrationism (Wilcox), finite horizon, calibration plus sharpness, comparative, non-manipulable-test reliabilism, computationally bounded, chance given grounds (Tang type), plus three objections (the process is a learner; new evil demon; psychological reality).
 - Survivors: chance given grounds (to be accommodated as positive view; Humean collapse worry to be answered); non-manipulable test reliabilism (not refuted; set aside with reasons, stated as a limit); comparative (collapses into chance view or fails in anti-tracking worlds).
 - Change: the core argument now rests on (i) dominance (no restriction of worlds can rank the uninformed process lower) and (ii) the anti-tracking world (calibration ties a process that is always 0.4 from chance with the chance-matcher), not on the claim that the uninformed process's credences are always unjustified.
+
+## Step 4 (outlines) -> 04a, 04b, 04c
+- Round 1: target structure. Critique: maths split in two places, conditional calibration duplicated, CR not formulated, core argument rested on barometer case which the strongest view escapes; missing objections.
+- Round 2: core argument recast as a schematic argument about "world-independently securable" standards plus the anti-tracking lemma; barometer demoted to illustration. Critique: availability clause in premise R unnecessary; probabilistic step sloppy; chance-sceptic version missing; length.
+- Round 3: final outline with word budget; premise R freed of availability; deterministic variant; objections merged.
+
+## Step 5 (draft) -> 05_draft_v1.md
+- Full draft, about 5,270 words excluding references (appendix included). Core argument as nine numbered steps in section 4. Two small post-draft fixes (removed unverified claim that Tang did not give a certain reason; corrected lower-bound exponent wording).
