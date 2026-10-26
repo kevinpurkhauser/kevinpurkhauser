@@ -49,3 +49,15 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 - CR-S restated with reflexivity at a normal actual world (answers in-w vs at-w).
 - Theorem 2 hypotheses corrected; (G) restated; OS 2009b, Al-Najjar-Weinstein, Dekel-Feinberg, Al-Najjar et al. corrected; rates corrected; Humean third point dropped; inheritance claim replaced by a discussion of typing; comparative section rewritten (conditional on aggregator existence); positive measure credited to standard decomposition and Pettigrew 2016.
 - Unresolvable: primary texts of Dunn and Tang cannot be read in this environment; essay keeps only verified quotations.
+
+## Step 6, round 2 -> referee/r2_*.md
+- Fresh referees (saw only v2). A: major, 7/5/8. B: major, 7/5/7. C: major, 7/6/7 ("none overturns the main thesis"). All concede the central negative point.
+- New substantive objections: A3 false under exogenous reading (coin-at-outset counterexample, found independently by all three); quantifier gap for coin-fixed processes over rich ranges (A, C); R's same-input clause vacuous (B); normal-worlds misformulation and demon comparison wrong (B); Hu-Shmaya 2013 computability exception (C); order-of-explanation / Dawidian vindication reply (A, B); exhaustiveness gaps (A, B); missing literature (Putnam 1963, Seidenfeld 1985, Gneiting et al., Clifton).
+- Verified at abstract/bibliographic level: Clifton (statistical reliabilism), Putnam 1963 pages, Hu-Shmaya pages. Murphy 1973 and DeGroot-Fienberg 1983 bibliographic details NOT verified, so not cited.
+- Revision plan: 06b_revision_plan_round2.md.
+
+## Revision after round 2 -> 05_draft_v3.md (5,493 words)
+- History fixed (outcomes, labels, index); unconditional propensity; Lemma restated with Brier excess (a) and corrected 2/7 derivation (b).
+- Calibration in a world = almost-sure calibration; main argument under broad individuation; R restated day-by-day with Brier excess and a resources clause (chance computable from inputs relative to the process's rule), which removes the vacuity and makes 5.1/5.2 consistent. Flagship: deterministic Foster-Hart case.
+- A3 corrected (probability of propensity-binned calibration bounded below one). 5.2 adds an order-of-explanation argument and the reductive-Dawidian concession. 5.3 adds pooled cross-world calibration. New 5.4: refinement, deterministic sharp over rich ranges, rate-sensitive standards.
+- Target restated: ranges containing @; normal-worlds calibrationism treated as a limit (6.4). Demon discussion corrected. Repertoire relativization added (6.1). Hu-Shmaya added; (G) proviso. Natural persistence-world case added. Humean section restated (finite-time rejection; Shmaya's probability-one hypothesis).
