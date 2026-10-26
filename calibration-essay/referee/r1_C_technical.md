@@ -1,0 +1,26 @@
+# Round 1, Referee C (economist / TCS, forecast testing; technical check)
+
+Record of the report (condensed by the author agent; every technical point retained).
+
+Verdict: MAJOR REVISION. Scores: originality 7, correctness 5, importance 7.
+
+Core idea sound and new to epistemology. Lemma correct once stated properly. Several formal claims broader than the theorems.
+
+## Claim-by-claim
+- 2.1 Definition of "calibrated" needs liminf/limsup; vacuous for continuum-valued forecasts (Bayesian); use a binned score. "Eventually below epsilon" conflicts with A1 limsup; use limsup <= epsilon.
+- 2.2 FV core correct. Almost-sure, adaptive-adversary form: cite Fudenberg-Levine 1999 or Hart's proofs alongside FV (FV abstract frames Nature as choosing the sequence in advance). Exact calibration on a finite grid impossible in general (off-grid i.i.d. chance), for any procedure; needs refining countable grid. "A fortiori every chance process" needs independence of the current coin. Rates: l1 error, in expectation, not squared/a.s.; upper rate transfers, lower bounds do not; Dagan et al. main result is an UPPER bound O(T^{2/3-eps}); correct statement: best known average O(T^{-1/3-eps}), best lower Omega(T^{-0.456}).
+- 2.3 Foster-Hart correct; precisely (eps, delta)-smooth at fixed bandwidth; bandwidth to 0 collapses to sharp. Supports the use made of it: holds pathwise in its anti-tracking world; forecasts near 1/2; distance about 0.4; chance-matcher smoothly calibrated for delta < 0.8. The contrast "deterministic learner miscalibrated in its anti-tracking world" holds only for sharp calibration with bin boundary at 1/2; false for smooth.
+- 2.4 SSV essentially correct (checking rules may depend on past and current forecast; a.s.; active infinitely often). No labels in SSV; label timing is the online multicalibration extension. Quantifier order: for each family there is a procedure (forall-exists); text in secs 4 and 8 reads exists-forall. FRST correct in spirit. Multicalibration correct.
+- 2.5 Lemma inequality correct. Define f-bar as integral over coins of the rule (not conditional expectation) to avoid circularity. Labels: specify label process (fixed, independent of coins) and condition on current label. Scope overstated: only expected credence anti-aligned; randomized process may match chance with probability near 1/2 every day (example 0.9 w.p. 0.45, else 0.1).
+- 2.6 A3 correct (martingale SLLN, predictable selection, countable union). Grid must contain 0.9 and 0.1. Section 7 "chance-matcher calibrated with probability one" overstated for off-grid chances: state with bins (delta-calibrated) or averaged predictable selection; Dawid 1982 is own-prior version.
+- 2.7 A4: liminf C_T >= 0.16; relies on finite grid; not for a Bayesian with continuum forecasts unless 1/2 is a bin boundary.
+- 2.8 Step 7 WRONG as stated: (a) exact finite-grid calibration not securable; (b) finite horizon securable only beyond a horizon threshold, using high-probability bounds; (c) reference classes: all predictable classes unsatisfiable even by chance-matcher; the class {f-bar < 1/2} defeats the witness; process-relative "propensity-binned" family {t: f-bar in I} is countable for each rho, chance-matcher passes, no rho passes in w_rho. Restrict to R fixed independently of rho, countable or bounded complexity. If credence is identified with f-bar, FV witness becomes deterministic, A4 applies, only smooth version survives. (d) every world means coin independent of outcome given past. (e) smooth: fixed bandwidth, positive tolerance.
+- 2.9 Step 5 valid read as run-level vs world-level; make explicit.
+- 2.10 Section 4.1 numbers correct.
+- 2.11 5.5 imprecise: needs a calibrated no-regret aggregator; conclusion only average excess >= 0.16 - o(1); needs averaged R.
+- 2.12 Sandroni correct in substance (epsilon + delta; tests may depend on whole theory). OS 2008 omits hypothesis: "Every future-independent test which rejects theories in finite time, and which, with probability 1 - eps, does not reject the truth, can be ignorantly passed with probability 1 - eps - delta" (Olszewski Handbook survey, Prop. 3, as quoted in search). Limit tests not covered. Shmaya: truth passes with probability one; (G)'s high-probability Borel clause unsupported unless proved. Theorem 2 forecasters are history-based (drawn theory as part of coin). No labels in these frameworks.
+- 2.13 Dekel-Feinberg: mention continuum hypothesis for stronger result. OS 2009b MISCHARACTERIZED: can reject in finite time using predictions about unobserved data; separation measure-theoretic per generator; "verdicts in the limit / no finite stretch bears" wrong. Fortnow-Vohra: hardness assumptions; true forecaster may be expensive. Al-Najjar et al. 2010: restriction on admissible theories. Al-Najjar-Weinstein: identifies the informed expert OR the forecasts are close in most periods (caveat helps the paper).
+- 2.14 Dawid-via-Oakes attribution: cite directly if possible.
+- 2.15 Humean: lead with point that type I control presupposes given chances; future-dependence insufficient since Shmaya needs no future-independence; third point doubtful (f-bar modal, realized FV credences hover near 1/2); restrict to deterministic witnesses or drop.
+
+## Errors E1-E9 and imprecisions I1-I12 as above.
