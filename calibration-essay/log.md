@@ -61,3 +61,16 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 - Calibration in a world = almost-sure calibration; main argument under broad individuation; R restated day-by-day with Brier excess and a resources clause (chance computable from inputs relative to the process's rule), which removes the vacuity and makes 5.1/5.2 consistent. Flagship: deterministic Foster-Hart case.
 - A3 corrected (probability of propensity-binned calibration bounded below one). 5.2 adds an order-of-explanation argument and the reductive-Dawidian concession. 5.3 adds pooled cross-world calibration. New 5.4: refinement, deterministic sharp over rich ranges, rate-sensitive standards.
 - Target restated: ranges containing @; normal-worlds calibrationism treated as a limit (6.4). Demon discussion corrected. Repertoire relativization added (6.1). Hu-Shmaya added; (G) proviso. Natural persistence-world case added. Humean section restated (finite-time rejection; Shmaya's probability-one hypothesis).
+
+## Step 6, round 3 -> referee/r3_*.md
+- Fresh referees (saw only v3). A: major, 7/5/8. B: major, 8/6/8 ("the core first-horn result stands; it is the paper's real contribution"). C: minor (at the major end), 6/7/6.
+- New substantive objections (so the two-quiet-rounds stopping rule is not met): deterministic flagship reaches only unconditional smooth calibration; "same resources" equivocates computability and complexity; narrow-individuation remark gaps; 5.1 non sequitur (A4 world is right by D1); computable calibrationism not refuted (coextension plus explanatory-priority claim); (G)(iii) threshold (Shmaya 1 - eps); coherence restriction; basing tension with the barometer case; Pettigrew hybrid and Clifton positioning.
+- Verified: Lee, Noarov, Pai, Roth (NeurIPS 2022) multicalibeating.
+- Revision plan: 06c_revision_plan_round3.md.
+
+## Revision after round 3 -> 05_draft_v4.md (5,733 words excl. references, incl. abstract and appendix)
+- Added abstract. Deterministic witness extended to finitely many history-defined classes (own construction: separate copies on atoms); explicit map of which witness supports which claim; narrow individuation stated as a weaker, unrelied-on reading.
+- "Same resources" replaced by computability relative to the rule; feasibility flagged.
+- 5.1 rewritten without A4 (A4 dropped); A3 bound corrected to 1/(2(0.9 - sqrt eps)).
+- 5.2 rewritten: computable calibrationism not refuted by the first horn; new initial-segment sufficiency failure; coextension; anti-D2 conclusion explicitly conditional on non-reductive chance.
+- (G) restated with pass-probability thresholds; Shmaya 1 - eps. (D1) marked as the author's regimentation; (D1') meta-inductivist reply addressed (6.1). Coherence restriction answered (6.2). Scope of the justification claim restricted for conditional versions (4.1). Barometer case relocated to non-undermining, where calibration cannot rank processes (section 8). Clifton and Pettigrew repositioned. Comparative section cites calibeating and multicalibeating.
