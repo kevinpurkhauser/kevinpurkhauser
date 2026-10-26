@@ -89,3 +89,12 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 - Rate standards corrected (binned rates securable by approachability). Persistence-world condition corrected. Learnability disambiguated. Refinement decomposition and barometer asymmetry addressed. Demon-world disanalogy (grue world). Self-monitoring restriction answered. Thesis restated: track-record calibrationism fails; chance-reading calibrationism is the chance view. Hajek 2007 for coarse chance.
 - Word cuts to stay under 6,000.
 - Note: a style hook in this environment re-wraps sentences in files after writing (files are reported as "changed on disk"); content was checked after each change.
+
+## Step 7 (audit) -> 07_audit.md, 05_draft_v6.md
+- Fresh subagent audited all 40 references and 47 in-text claims/quotations via web search. Fixes applied in v6 (paraphrased unverifiable quotations; Goldman 1979 for the alternative-process condition; Dawid 1985b added; Foster-Hart 2023 for the Brier decomposition; Dekel-Feinberg CH caveat; separate lower-bound attributions; Schurz quote attributed to publisher's description; reference details).
+
+## Step 8 (final checks) -> 08_final_checks.md, final.pdf
+- Word count 5,744 (plain text, excl. references). Anonymization, hidden-text and rendering checks passed. PDF built with pandoc + headless Chromium.
+
+## Step 9 (methodology) -> 09_methodology_report_v2.md
+- Completed from this log and the numbered files.
