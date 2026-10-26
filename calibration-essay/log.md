@@ -74,3 +74,18 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 - 5.1 rewritten without A4 (A4 dropped); A3 bound corrected to 1/(2(0.9 - sqrt eps)).
 - 5.2 rewritten: computable calibrationism not refuted by the first horn; new initial-segment sufficiency failure; coextension; anti-D2 conclusion explicitly conditional on non-reductive chance.
 - (G) restated with pass-probability thresholds; Shmaya 1 - eps. (D1) marked as the author's regimentation; (D1') meta-inductivist reply addressed (6.1). Coherence restriction answered (6.2). Scope of the justification claim restricted for conditional versions (4.1). Barometer case relocated to non-undermining, where calibration cannot rank processes (section 8). Clifton and Pettigrew repositioned. Comparative section cites calibeating and multicalibeating.
+
+## Step 6, round 4 -> referee/r4_*.md (final round under the four-round cap)
+- Fresh referees (saw only v4). A: major, 6/6/7. B: major, 7/7/7 (all formal claims checked correct). C: minor (near border), 6/7/6 (core correct).
+- Round 4 still raised new substantive points (scope of "bounded richness"; Shmaya's sequential restriction; rate-standards error; partition witness loses finite recall, "ordinary" overclaim; feasibility vs computability for randomized witnesses; refinement decomposition and barometer asymmetry; Pettigrew reading; outcome indistinguishability; computable finite-horizon manipulation sub-dilemma). The stopping rule "two consecutive quiet rounds" was never met; the panel stopped at the four-round cap, as instructed.
+- Verified: Dwork et al. 2021 (STOC, pp. 1095-1108), Hajek 2007 (Synthese 156(3): 563-585). Olszewski-Sandroni 2008 quotation could NOT be verified verbatim (working-paper abstract wording differs), so it is now paraphrased.
+
+## Final revision after round 4 -> 05_draft_v5.md (about 5,930 words excl. references)
+- Step 4 scope stated exactly (countable families; finite sequential complexity; finitely many history-defined classes for deterministic smooth); "bounded richness" removed; unrestricted computable calibration reclassified as first-horn (SSV), escaping only by restricting processes.
+- Horn 1 split into deterministic core (feasible matcher, exogenous, ordinary world for the unconditional witness) and randomized extension (computability reading; feasibility reading noted; reactive feasible variant; narrow individuation stated as sufficing against a necessary claim given an averaged R). Binned calibration argued to be a poor refuge.
+- Partition construction restated in linear (Lipschitz test-function) form; finite recall loss acknowledged; "ordinary" restricted.
+- Theorem 2(c) restricted to sequential forecasts; OS 2008 paraphrased; (G) presented as extension under the randomized-rule individuation.
+- 5.1 computable calibration: sub-dilemma (limit standards leave credences unconstrained; finite computable tests computably manipulable); outcome indistinguishability treated as a refinement of the chance view.
+- Rate standards corrected (binned rates securable by approachability). Persistence-world condition corrected. Learnability disambiguated. Refinement decomposition and barometer asymmetry addressed. Demon-world disanalogy (grue world). Self-monitoring restriction answered. Thesis restated: track-record calibrationism fails; chance-reading calibrationism is the chance view. Hajek 2007 for coarse chance.
+- Word cuts to stay under 6,000.
+- Note: a style hook in this environment re-wraps sentences in files after writing (files are reported as "changed on disk"); content was checked after each change.
