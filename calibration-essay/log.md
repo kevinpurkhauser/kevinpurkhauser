@@ -34,3 +34,8 @@ Human inputs so far: choice of area, choice of thesis among Stage 1 candidates, 
 
 ## Step 5 (draft) -> 05_draft_v1.md
 - Full draft, about 5,270 words excluding references (appendix included). Core argument as nine numbered steps in section 4. Two small post-draft fixes (removed unverified claim that Tang did not give a certain reason; corrected lower-bound exponent wording).
+
+## Step 6, round 1 (in progress)
+- Launched three fresh referee subagents that saw only a copy of the draft (in the scratchpad, not the project folder).
+- Referee A (formal epistemologist): major revision; originality 7, correctness 5, importance 7. Record in referee/r1_A_formal_epistemologist.md. Main points: expectation over past coins undermines the lemma for randomized witnesses (decisive A/B coin example); step 7 overgeneralized (process-relative classes, computable families, cross-world calibration); premise R not as neutral as claimed; chance-free variant reinstates the truth-closeness standard; measure in section 7 not novel.
+- Referees B and C were interrupted by an API rate limit and resumed after the user asked to try again.
