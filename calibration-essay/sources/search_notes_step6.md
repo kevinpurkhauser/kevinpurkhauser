@@ -1,0 +1,8 @@
+# Search notes for revisions after referee round 1
+
+- Vovk, Takemura and Shafer (2005), "Defensive forecasting", AISTATS 2005, pp. 365-372 (arXiv cs/0505083): for any continuous gambling strategy detecting disagreement between forecasts and outcomes there is a forecasting strategy ideal from its point of view. Companion "Defensive forecasting for linear protocols" (cs/0506007): K29 algorithm has calibration and resolution properties; no assumptions on data generation.
+- Gneiting, Balabdaoui and Raftery (2007), JRSS B 69(2): 243-268: "the paradigm of maximizing the sharpness of the predictive distributions subject to calibration"; calibration is a joint property of forecasts and outcomes, sharpness a property of the forecasts only.
+- Schurz (2019), Hume's Problem Solved: The Optimality of Meta-Induction, MIT Press: attractivity-weighted meta-induction "is predictively optimal in all possible worlds among all prediction methods accessible to the epistemic agent" (publisher blurb).
+- van Fraassen (1983), "Calibration: a frequency justification for personal probability", in Cohen and Laudan (eds), Physics, Philosophy and Psychoanalysis, Reidel (Boston Studies 76). Per Hoefer (2012, Dialectica): van Fraassen claimed calibration is the analogue of truth for credence.
+- Joyce (1998), "A nonpragmatic vindication of probabilism", Phil. Sci. 65(4): 575-603. Search summary of the full text: argues the van Fraassen/Shimony strategy fails because calibration is not a reasonable measure of accuracy for partial beliefs (secondary summary; phrase cautiously).
+- Pettigrew (2016), Accuracy and the Laws of Credence, OUP: ch. 10 replaces dominance with chance dominance to derive chance-credence principles (chapter abstract).
