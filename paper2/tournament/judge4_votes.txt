@@ -1,0 +1,35 @@
+T09 vs T15 -> WINNER: T09
+T06 vs T17 -> WINNER: T17
+T10 vs T13 -> WINNER: T10
+T09 vs T18 -> WINNER: T09
+T10 vs T14 -> WINNER: T10
+T02 vs T18 -> WINNER: T02
+T12 vs T16 -> WINNER: T12
+T01 vs T13 -> WINNER: T13
+T13 vs T16 -> WINNER: T13
+T13 vs T17 -> WINNER: T13
+T02 vs T03 -> WINNER: T03
+T06 vs T09 -> WINNER: T09
+T09 vs T12 -> WINNER: T12
+T01 vs T11 -> WINNER: T01
+T08 vs T10 -> WINNER: T10
+T01 vs T16 -> WINNER: T01
+T07 vs T17 -> WINNER: T17
+T11 vs T15 -> WINNER: T15
+T06 vs T18 -> WINNER: T06
+T04 vs T05 -> WINNER: T04
+T07 vs T10 -> WINNER: T10
+T12 vs T14 -> WINNER: T12
+T04 vs T12 -> WINNER: T12
+T02 vs T05 -> WINNER: T02
+T03 vs T08 -> WINNER: T03
+T06 vs T08 -> WINNER: T06
+T11 vs T14 -> WINNER: T11
+T07 vs T18 -> WINNER: T18
+T02 vs T11 -> WINNER: T02
+T05 vs T14 -> WINNER: T05
+T01 vs T15 -> WINNER: T01
+T04 vs T16 -> WINNER: T04
+T03 vs T15 -> WINNER: T03
+# Strongest: T10, T12, T03. Weakest: T14, T07, T18.
+# Notable: T09 equivocates (harm of lying = exploiting non-anticipating hearers); T01 trivializes emergence; T08 consumer teleosemantics already readout-relative.

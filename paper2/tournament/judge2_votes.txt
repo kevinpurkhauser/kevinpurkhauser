@@ -1,0 +1,32 @@
+T01 vs T02 -> WINNER: T02
+T10 vs T12 -> WINNER: T10
+T08 vs T18 -> WINNER: T08
+T01 vs T07 -> WINNER: T01
+T01 vs T05 -> WINNER: T01
+T12 vs T17 -> WINNER: T12
+T01 vs T06 -> WINNER: T01
+T02 vs T18 -> WINNER: T02
+T07 vs T18 -> WINNER: T18
+T08 vs T17 -> WINNER: T08
+T05 vs T10 -> WINNER: T10
+T12 vs T15 -> WINNER: T12
+T13 vs T15 -> WINNER: T13
+T05 vs T07 -> WINNER: T05
+T02 vs T03 -> WINNER: T02
+T04 vs T07 -> WINNER: T04
+T09 vs T15 -> WINNER: T09
+T03 vs T11 -> WINNER: T03
+T02 vs T14 -> WINNER: T02
+T04 vs T09 -> WINNER: T09
+T03 vs T10 -> WINNER: T10
+T06 vs T17 -> WINNER: T06
+T13 vs T17 -> WINNER: T13
+T08 vs T11 -> WINNER: T08
+T11 vs T12 -> WINNER: T12
+T08 vs T16 -> WINNER: T08
+T04 vs T14 -> WINNER: T04
+T06 vs T13 -> WINNER: T13
+T16 vs T18 -> WINNER: T18
+T14 vs T16 -> WINNER: T14
+# Strongest: T10, T09, T13. Weakest: T07, T16, T14.
+# Notable: T04 sufficiency-for-necessity slip; T11 MacKay not libertarian; T06 relabels Garber-style learning.

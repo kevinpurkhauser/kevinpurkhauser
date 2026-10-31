@@ -1,0 +1,37 @@
+T03 vs T13 -> WINNER: T03
+T10 vs T18 -> WINNER: T10
+T03 vs T16 -> WINNER: T03
+T08 vs T12 -> WINNER: T12
+T09 vs T14 -> WINNER: T09
+T01 vs T08 -> WINNER: T01
+T03 vs T04 -> WINNER: T03
+T11 vs T13 -> WINNER: T13
+T02 vs T05 -> WINNER: T02
+T04 vs T15 -> WINNER: T04
+T16 vs T17 -> WINNER: T17
+T05 vs T12 -> WINNER: T12
+T06 vs T07 -> WINNER: T06
+T06 vs T17 -> WINNER: T06
+T07 vs T10 -> WINNER: T10
+T12 vs T15 -> WINNER: T12
+T13 vs T17 -> WINNER: T13
+T08 vs T09 -> WINNER: T09
+T12 vs T18 -> WINNER: T12
+T01 vs T02 -> WINNER: T01
+T02 vs T04 -> WINNER: T04
+T15 vs T18 -> WINNER: T15
+T09 vs T17 -> WINNER: T09
+T04 vs T09 -> WINNER: T04
+T11 vs T15 -> WINNER: T15
+T11 vs T14 -> WINNER: T11
+T16 vs T18 -> WINNER: T16
+T05 vs T14 -> WINNER: T05
+T01 vs T10 -> WINNER: T10
+T01 vs T11 -> WINNER: T01
+T03 vs T14 -> WINNER: T03
+T06 vs T16 -> WINNER: T06
+T05 vs T08 -> WINNER: T08
+T02 vs T10 -> WINNER: T10
+T07 vs T13 -> WINNER: T13
+# Strongest: T10, T12, T03. Weakest: T07, T14, T18.
+# Notable: T08 teleosemantics individuates via consumers; T09 claimed equivalence lying/committed disclosure contestable.

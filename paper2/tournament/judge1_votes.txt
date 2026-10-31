@@ -1,0 +1,35 @@
+T07 vs T12 -> WINNER: T12
+T05 vs T18 -> WINNER: T05
+T08 vs T10 -> WINNER: T10
+T04 vs T11 -> WINNER: T04
+T04 vs T07 -> WINNER: T04
+T04 vs T09 -> WINNER: T09
+T01 vs T10 -> WINNER: T10
+T12 vs T14 -> WINNER: T12
+T03 vs T05 -> WINNER: T03
+T02 vs T06 -> WINNER: T06
+T15 vs T16 -> WINNER: T16
+T11 vs T16 -> WINNER: T11
+T01 vs T05 -> WINNER: T01
+T06 vs T13 -> WINNER: T06
+T03 vs T07 -> WINNER: T03
+T17 vs T18 -> WINNER: T17
+T05 vs T16 -> WINNER: T16
+T08 vs T13 -> WINNER: T13
+T02 vs T09 -> WINNER: T09
+T02 vs T03 -> WINNER: T03
+T06 vs T15 -> WINNER: T06
+T06 vs T11 -> WINNER: T06
+T01 vs T12 -> WINNER: T12
+T15 vs T18 -> WINNER: T15
+T09 vs T15 -> WINNER: T09
+T08 vs T17 -> WINNER: T08
+T10 vs T14 -> WINNER: T10
+T09 vs T14 -> WINNER: T09
+T13 vs T14 -> WINNER: T13
+T07 vs T10 -> WINNER: T10
+T16 vs T17 -> WINNER: T17
+T04 vs T18 -> WINNER: T04
+T11 vs T17 -> WINNER: T17
+# Strongest: T10, T12, T09. Weakest: T18 (derivable vs knowable confusion), T05 (gappedness arithmetical, determinate), T14 (recombination).
+# Notable reasons: T04 "exactly when" overstates Dagum-Luby; T15 supervaluation inference invalid; T01 derivability relative to ZFC makes emergence cheap; T08 open to population-level vehicle types.
