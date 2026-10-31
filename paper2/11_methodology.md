@@ -158,13 +158,19 @@ Fresh adjudicator subagents classified rounds 2 and 3. For rounds 4 and 5 the au
 
 **Stopping.** The panel stopped after round 5 for reasons of time and budget, short of the cap of 6. The quiet-round condition was never met.
 
-## Phase 9: citation audit (`09_audit.md`)
+## Phase 9: citation audit (`09_audit.md`, `09_audit_report_raw.md`)
 
-[Filled in after the audit; see Section 6.]
+- A fresh auditor checked draft v8 with 22 searches.
+- **References (17):** 10 verified, 5 partly verified, 0 wrong. 3 were uncited and have been removed.
+- **In-text attributions (21):** 11 verified, 7 partly verified, 2 not verified, 1 wrong. The wrong one was Besicovitch's theorem, cited for intervals not centred at the point.
+- All twelve listed fixes were applied in v9, including the addition of Meehan and Zhang (2022).
 
 ## Phase 10: final checks and PDF (`10_final_checks.md`, `final.pdf`)
 
-[Filled in after the checks.]
+- Final text: v10. It is v9 with blank lines inserted so that lists render as lists.
+- Word count, bibliography excluded: 4,162 by pandoc plain text, and 4,399 by counting markdown tokens.
+- Anonymity, injection and invisible-character scans are all clean.
+- The PDF text layer matches the visible text. 12 pages, inspected visually.
 
 # 5. What the method did well, and where it failed
 
@@ -185,9 +191,11 @@ Fresh adjudicator subagents classified rounds 2 and 3. For rounds 4 and 5 the au
 5. **Self-adjudication.** The author agent adjudicated rounds 4 and 5 itself.
 6. **Unsurvived stage.** The final thesis was never put through a tournament or a kill round. It emerged during refereeing.
 
-# 6. Audit and final checks
+# 6. Residual limitations of the final essay
 
-[Filled in after the audit.]
+- **Unverified details:** AFR's corollary numbers in the JACM version, the end page of Rescorla 2025, and Lopez-Wild's volume and pages. The essay cites these without pinpoints.
+- **Proofs not machine-checked:** the recursion-theorem proof of Proposition 2 and the sketch of Proposition 4. Referees checked them by hand.
+- **Last referee verdict:** major revision (three referees) and minor revision on technical grounds (one). The revisions in v7 to v10 answer the round-5 points, but no further round reviewed them.
 
 # 7. Reproducibility
 
@@ -198,3 +206,20 @@ Fresh adjudicator subagents classified rounds 2 and 3. For rounds 4 and 5 the au
   2. use fresh subagents with the prompts in the appendix;
   3. use the same network policy, which matters: results would differ with full-text access.
 - The code in `formal/` runs with Python 3, z3-solver, sympy and mpmath.
+
+# Appendix A. Human inputs, verbatim
+
+1. "paper2_prompt.md ok run it Go"
+2. "I allow it ask me" (followed by a denied clarification question)
+3. "Partial" (choice: run Phases 1-2 on search results, pause before Phase 3 until full-text access exists)
+4. "Ich habe mein Nutzungslimit erreicht, während du gearbeitet hast, aber es wurde inzwischen zurückgesetzt. Bitte mache dort weiter, wo du aufgehört hast." (sent twice; "continue")
+5. "Now it should be fixed" (GitHub access restored; no content)
+6. "Well, how is it then best to proceed?" (request for a recommendation among the presented options; no argument content)
+7. "Very well. Can you give me now both paper 1 & 2 as finished ones?"
+8. "Finish 2 as best as possible with what you have" (choice: option 2 of the presented options, i.e. write from search results only, starting from the C08/S5 line: computability constraints on priors)
+9. "Ich habe mein Nutzungslimit erreicht, während du gearbeitet hast, aber es wurde inzwischen zurückgesetzt. Bitte mache dort weiter, wo du aufgehört hast." ("continue")
+
+
+# Appendix B. The pipeline prompt
+
+The AI-generated pipeline prompt is reproduced verbatim in `paper2_prompt.md`. Every subagent prompt is reproduced verbatim in `11_prompts_appendix.md`.

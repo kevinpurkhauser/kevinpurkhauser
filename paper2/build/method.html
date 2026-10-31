@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Methodology report: Following Conditionalization</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Methodology report: Following Conditionalization</h1>
+</header>
+<p>This report is anonymized. It accompanies the essay “Following
+Conditionalization: Per-Prior Computability Is Not Enough”. The full
+chat logs of the session are retained and can be inspected. Every
+subagent prompt is reproduced verbatim in the companion file
+<code>11_prompts_appendix.md</code>, which is extracted mechanically
+from the transcript. The pipeline prompt is reproduced verbatim as
+<code>paper2_prompt.md</code>.</p>
+<h1 id="summary">1. Summary</h1>
+<p>The essay was produced by an AI agent (the “author agent”) following
+an 11-phase pipeline. The pipeline prompt itself was written by an AI at
+the human’s request, from the instruction “please give me the best
+prompt to enable all of this”.</p>
+<p>The pipeline was built to search for a surprising thesis and then try
+to destroy it: - mine open problems; - generate candidate theses; - rank
+them in a blind pairwise tournament; - send refuters against the best; -
+go back to the tournament when they fall.</p>
+<p>Two tournament cycles tested 13 theses. Eleven were killed and two
+damaged. The thesis finally written up came from neither: it was
+developed from the line of one killed candidate in response to its
+refutation.</p>
+<p>A calibrated referee panel then ran five rounds, and these changed
+the thesis three times: - from a “noise in evidence” thesis; - to a
+“presented densities” thesis; - to the final quantifier-order
+thesis.</p>
+<p>Correctness scores rose from 4.0 to 6.75. The panel’s verdict stayed
+at major revision. The prompt’s stopping rule (two quiet rounds) was
+never met.</p>
+<h1 id="division-of-labour">2. Division of labour</h1>
+<p><strong>Human inputs.</strong> All nine are logged verbatim in
+<code>human_inputs.md</code>: 1. “paper2_prompt.md ok run it Go” 2. “I
+allow it ask me” (followed by a denied clarification question) 3.
+“Partial”: a choice among options the author agent offered. Run Phases 1
+and 2 on search results, and pause before Phase 3 until full texts can
+be read. 4. Two messages saying the usage limit had reset, asking the
+agent to continue. 5. “Now it should be fixed”: GitHub access had been
+restored. No content. 6. “Well, how is it then best to proceed?”: a
+request for a recommendation. 7. “Very well. Can you give me now both
+paper 1 &amp; 2 as finished ones?” 8. “Finish 2 as best as possible with
+what you have”: a choice among presented options. Write from search
+results only, on the line of candidate C08 and successor S5. 9. One
+further “continue” after a usage-limit reset.</p>
+<p>The human therefore chose the area only indirectly, by picking among
+options the agent presented. The human wrote no argument, objection,
+outline or text, and gave no feedback on drafts.</p>
+<p><strong>AI work.</strong> Everything else was done by AI: mining,
+candidate generation, judging, refutation, thesis development, the
+formal results and code, the steelman, outlines, drafts, refereeing,
+adjudication, audit and this report. The author agent launched 54
+subagents. All of them were fresh: none saw the author agent’s
+reasoning, and each saw only the files named in its prompt.</p>
+<h1 id="environment-constraints">3. Environment constraints</h1>
+<ul>
+<li><strong>Network.</strong> The environment’s network policy blocked
+every scholarly full-text host: arxiv.org, philpapers.org,
+philarchive.org, plato.stanford.edu, philsci-archive.pitt.edu, Springer,
+OUP, Cambridge and JSTOR.
+<ul>
+<li>Phase 0 of the prompt requires stopping in that case. The agent
+stopped, and the human chose to proceed in two steps (inputs 3 and
+8).</li>
+<li>Every source was used through search-result snippets, abstracts and
+bibliographic records.</li>
+<li>The essay contains no direct quotations for this reason.</li>
+</ul></li>
+<li><strong>Usage limits.</strong> The account’s usage limits
+interrupted subagents twice. They were resumed with continuation
+messages, which are included in the appendix.</li>
+<li><strong>Post-processing.</strong> A post-processing step rewrapped
+files after they were written. The agent re-read files when
+notified.</li>
+</ul>
+<h1 id="phases-and-outcomes">4. Phases and outcomes</h1>
+<h2 id="phase-1-open-problem-mining-01_open_problems.md-mining">Phase 1:
+open-problem mining (<code>01_open_problems.md</code>,
+<code>mining/</code>)</h2>
+<ul>
+<li>Four parallel subagents covered 12 areas.</li>
+<li>Ledger: 63 open problems (plus 2 weak entries) and 16 importable
+results (plus 5 leads). The prompt’s target of 60 was met.</li>
+<li>The shared web-search budget ran out before three of the four
+subagents had finished.</li>
+</ul>
+<h2 id="phase-2-candidates-tournament-and-kill-rounds">Phase 2:
+candidates, tournament and kill rounds</h2>
+<p><strong>Candidates.</strong> 24 candidate theses
+(<code>02_candidates.md</code>). A quick novelty check discarded 6: - 3
+because they were substantially in print; - 3 because a premise was
+contradicted by sources.</p>
+<p><strong>First tournament.</strong> - Five fresh judges each saw
+anonymized abstracts (labels T01 to T18) and 30 to 35 pairs. - 164 votes
+in total, ranked by Bradley-Terry. - Top six: C01 (18/18), C05, C08,
+C03, C14, C07 (<code>tournament/ranking.md</code>).</p>
+<p><strong>First kill round.</strong> - One fresh refuter per thesis,
+with web search. - The top 6 were tested, then the next 4 when only one
+survived. - Result: 9 killed and 1 damaged (C08)
+(<code>killround/</code>). - Following the prompt’s rule “go back to the
+tournament rather than defending a weak paper”, the refuters’ salvage
+proposals became six successor theses
+(<code>02b_successors.md</code>).</p>
+<p><strong>Second tournament.</strong> - 3 judges, a round robin over
+the 6 successors: 45 votes. - S1 won 15/15
+(<code>tournament/succ_ranking.md</code>).</p>
+<p><strong>Second kill round.</strong> - S1 damaged; S5 and S2 killed. -
+A decisive snippet-level check on S1
+(<code>02c_S1_decisive_check.md</code>) pointed toward killing it.</p>
+<p><strong>Totals.</strong> 13 theses tested: 11 killed and 2 damaged.
+None survived intact. The human chose to proceed on the C08/S5 line
+(input 8).</p>
+<h2 id="phase-3-deep-novelty-check-03_novelty.md">Phase 3: deep novelty
+check (<code>03_novelty.md</code>)</h2>
+<ul>
+<li>About 12 searches, at snippet level.</li>
+<li>No source was found for the thesis as developed. The closest work is
+AFR 2019 and 2017, Lopez-Wild, and Huttegger, Walsh and Zaffora
+Blando.</li>
+<li>Referees later added Hoyrup, Rojas and Weihrauch (2012), which the
+final essay cites as the closest technical relative.</li>
+</ul>
+<h2 id="phase-4-formal-core-04_formal.md-formal">Phase 4: formal core
+(<code>04_formal.md</code>, <code>formal/</code>)</h2>
+<p><strong>Code.</strong> All of it runs and passes. -
+<code>check_mixture.py</code>: exact rational arithmetic over 2,000
+random instances, checking the mixture identities used in an early
+construction. - <code>skeleton_z3.py</code>: Z3 checks the logical
+skeleton of the early argument (valid), and checks that it becomes
+invalid when the key premise is dropped. -
+<code>noise_scale_mixture.py</code> and
+<code>noise_scale_repeated.py</code>: sympy and mpmath checks of the
+noise-scale results. - <code>prop2_posterior.py</code> and
+<code>prop2_tents.py</code>: exact checks of the constants of the final
+Proposition 2: the measure of E_n, the tent heights, and the posterior
+bound of 2/3.</p>
+<p><strong>Proof checking.</strong> The recursion-theorem proof of
+Proposition 2 is not machine-checked. It was checked line by line by
+referee C in rounds 3, 4 and 5. Round 5 found no error, after the
+repairs from rounds 3 and 4.</p>
+<p><strong>Claims the paper must not make.</strong> The list in
+<code>04_formal.md</code> was kept and extended.</p>
+<h2 id="phase-5-steelman-and-ideological-turing-test-05_.md">Phase 5:
+steelman and ideological Turing test (<code>05_*.md</code>)</h2>
+<ul>
+<li>An advocate subagent, primed with the opposing side, wrote the
+opposing case. The author agent wrote its own.</li>
+<li>The author agent’s version was written after the advocate’s had
+arrived, which contaminates the test.</li>
+<li>A fresh judge guessed the impostor wrongly: it named the advocate,
+at 65 percent confidence. It rated the advocate’s case stronger.</li>
+<li>Remedy: the union of both cases was used, and every objection rated
+4 or 5 out of 5 received a reply.</li>
+</ul>
+<h2 id="phase-6-outlines-06a-06b-06c">Phase 6: outlines
+(<code>06a</code>, <code>06b</code>, <code>06c</code>)</h2>
+<p>Three outlines, each followed by a critique and a revision.</p>
+<h2 id="phase-7-drafts-07_draft_v1.md-to-v8.md">Phase 7: drafts
+(<code>07_draft_v1.md</code> to <code>v8.md</code>)</h2>
+<p>Eight versions, none overwritten.</p>
+<h2 id="phase-8-calibrated-referee-panel-referee-08_rounds.md">Phase 8:
+calibrated referee panel (<code>referee/</code>,
+<code>08_rounds.md</code>)</h2>
+<p><strong>Calibration.</strong> - Two decoys of draft v2, with three
+planted errors each: a logical gap, a wrong attribution and a technical
+error. - Roles A and B reviewed decoy 1; roles C and D reviewed decoy 2.
+- Detection rates:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Planted errors caught</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A, specialist</td>
+<td>3/3</td>
+</tr>
+<tr class="even">
+<td>B, defender</td>
+<td>3/3</td>
+</tr>
+<tr class="odd">
+<td>C, technical</td>
+<td>2/3</td>
+</tr>
+<tr class="even">
+<td>D, generalist</td>
+<td>2/3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Overall: 10/12 (83 percent).</li>
+<li>All role prompts passed the required 2/3 on the first try
+(<code>referee/role_prompts_v1.md</code>).</li>
+<li>Both C and D missed the same planted gap, a dropped soundness
+step.</li>
+</ul>
+<p><strong>Rounds.</strong> Each round used fresh subagents that saw
+only a copy of the current draft outside the project folder. The
+unplanted points of the calibration reports served as round 1. That
+saved one round, and it is a deviation from the prompt.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Round</th>
+<th>Draft</th>
+<th>Distinct [S] issues</th>
+<th>New</th>
+<th>Repeat</th>
+<th>Verdicts</th>
+<th>Mean O / C / I</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>v2</td>
+<td>all new (36 [S] points)</td>
+<td>all</td>
+<td>0</td>
+<td>4 major</td>
+<td>6.0 / 4.0 / 5.25</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>v3</td>
+<td>22</td>
+<td>11</td>
+<td>11</td>
+<td>4 major</td>
+<td>5.25 / 5.5 / 4.75</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>v4</td>
+<td>21</td>
+<td>6</td>
+<td>15</td>
+<td>4 major (1 bordering on reject)</td>
+<td>4.75 / 5.5 / 4.5</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>v5</td>
+<td>not adjudicated</td>
+<td>about 4</td>
+<td>most</td>
+<td>4 major</td>
+<td>4.75 / 6.0 / 4.5</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>v6</td>
+<td>not adjudicated</td>
+<td>about 4</td>
+<td>most</td>
+<td>3 major, 1 minor (technical)</td>
+<td>4.5 / 6.75 / 4.0</td>
+</tr>
+</tbody>
+</table>
+<p>Fresh adjudicator subagents classified rounds 2 and 3. For rounds 4
+and 5 the author agent did the classification itself, a deviation
+recorded in <code>08_rounds.md</code>.</p>
+<p><strong>What changed.</strong> The decisive changes were these. -
+<strong>v2.</strong> The author agent caught its own error in the
+“evidence-first” argument. - <strong>v3.</strong> Kernel-level
+correctness, an explicit ought-implies-can premise, and repaired
+corollary hypotheses. - <strong>v4.</strong> Round 2 showed that the
+original core result (Proposition 1’) concerned only
+<em>recognition</em> of updatable priors. A new core result was found:
+Proposition 2, a uniformly computable family of tractable priors with no
+uniform updater, proved by the recursion theorem. - <strong>v5.</strong>
+Round 3 showed that the contrast in v4 was not about exact evidence but
+about presented densities. The thesis was restated. -
+<strong>v6.</strong> Round 4 gave a class-level counterexample: with
+fixed Lipschitz constants, measure presentations suffice. This became
+Proposition 4, and the thesis became “spaces of credences”. - <strong>v7
+and v8.</strong> Round 5 showed that the positive conditions are
+per-credence conditions with fixed parameters, and that the space-level
+thesis was nearly definitional. The thesis became a claim about
+quantifier order. Proposition 2 was generalised to any uniformly
+computable representation. A Dutch book consequence was added.</p>
+<p><strong>Stopping.</strong> The panel stopped after round 5 for
+reasons of time and budget, short of the cap of 6. The quiet-round
+condition was never met.</p>
+<h2 id="phase-9-citation-audit-09_audit.md-09_audit_report_raw.md">Phase
+9: citation audit (<code>09_audit.md</code>,
+<code>09_audit_report_raw.md</code>)</h2>
+<ul>
+<li>A fresh auditor checked draft v8 with 22 searches.</li>
+<li><strong>References (17):</strong> 10 verified, 5 partly verified, 0
+wrong. 3 were uncited and have been removed.</li>
+<li><strong>In-text attributions (21):</strong> 11 verified, 7 partly
+verified, 2 not verified, 1 wrong. The wrong one was Besicovitch’s
+theorem, cited for intervals not centred at the point.</li>
+<li>All twelve listed fixes were applied in v9, including the addition
+of Meehan and Zhang (2022).</li>
+</ul>
+<h2
+id="phase-10-final-checks-and-pdf-10_final_checks.md-final.pdf">Phase
+10: final checks and PDF (<code>10_final_checks.md</code>,
+<code>final.pdf</code>)</h2>
+<ul>
+<li>Final text: v10. It is v9 with blank lines inserted so that lists
+render as lists.</li>
+<li>Word count, bibliography excluded: 4,162 by pandoc plain text, and
+4,399 by counting markdown tokens.</li>
+<li>Anonymity, injection and invisible-character scans are all
+clean.</li>
+<li>The PDF text layer matches the visible text. 12 pages, inspected
+visually.</li>
+</ul>
+<h1 id="what-the-method-did-well-and-where-it-failed">5. What the method
+did well, and where it failed</h1>
+<p><strong>Did well.</strong> - The refuter stage was severe. It killed
+11 of 13 candidate theses that a tournament had rated highly. - The
+calibrated referees repeatedly found real errors, and each one changed
+the claims: - a misread proposition (recognition versus updating); - a
+confound (exactness versus presented density); - a counterexample (the
+fixed-constant class); - a false interval claim (atoms). - The final
+thesis is much narrower than the first and much better supported.
+Correctness rose in every round.</p>
+<p><strong>Failed or limited.</strong> 1. <strong>No full
+texts.</strong> Every attribution rests on snippets. Several pinpoint
+citations, such as AFR’s section numbers, remain unverified. 2.
+<strong>Thesis drift.</strong> The thesis changed four times during
+refereeing. One can read this as the method working, since claims were
+narrowed to what is proved. One can also read it as a sign that the
+thesis-generation phases did not find a robust thesis: the paper’s
+originality and importance scores fell as its correctness rose. 3.
+<strong>Never quiet.</strong> The panel never reached a quiet round.
+Each revision introduced new material, and fresh referees found new
+points in it. 4. <strong>Contaminated Turing test.</strong> The
+ideological Turing test was contaminated (see Phase 5). 5.
+<strong>Self-adjudication.</strong> The author agent adjudicated rounds
+4 and 5 itself. 6. <strong>Unsurvived stage.</strong> The final thesis
+was never put through a tournament or a kill round. It emerged during
+refereeing.</p>
+<h1 id="residual-limitations-of-the-final-essay">6. Residual limitations
+of the final essay</h1>
+<ul>
+<li><strong>Unverified details:</strong> AFR’s corollary numbers in the
+JACM version, the end page of Rescorla 2025, and Lopez-Wild’s volume and
+pages. The essay cites these without pinpoints.</li>
+<li><strong>Proofs not machine-checked:</strong> the recursion-theorem
+proof of Proposition 2 and the sketch of Proposition 4. Referees checked
+them by hand.</li>
+<li><strong>Last referee verdict:</strong> major revision (three
+referees) and minor revision on technical grounds (one). The revisions
+in v7 to v10 answer the round-5 points, but no further round reviewed
+them.</li>
+</ul>
+<h1 id="reproducibility">7. Reproducibility</h1>
+<ul>
+<li>Every phase’s output is a numbered file. Nothing was overwritten.
+All files are committed to the repository with the history intact.</li>
+<li>Every subagent prompt is in <code>11_prompts_appendix.md</code>, and
+every report is saved verbatim under <code>killround/</code> and
+<code>referee/</code>.</li>
+<li>To reproduce the run:
+<ol type="1">
+<li>give an agent <code>paper2_prompt.md</code> and the same human
+inputs;</li>
+<li>use fresh subagents with the prompts in the appendix;</li>
+<li>use the same network policy, which matters: results would differ
+with full-text access.</li>
+</ol></li>
+<li>The code in <code>formal/</code> runs with Python 3, z3-solver,
+sympy and mpmath.</li>
+</ul>
+<h1 id="appendix-a.-human-inputs-verbatim">Appendix A. Human inputs,
+verbatim</h1>
+<ol type="1">
+<li>“paper2_prompt.md ok run it Go”</li>
+<li>“I allow it ask me” (followed by a denied clarification
+question)</li>
+<li>“Partial” (choice: run Phases 1-2 on search results, pause before
+Phase 3 until full-text access exists)</li>
+<li>“Ich habe mein Nutzungslimit erreicht, während du gearbeitet hast,
+aber es wurde inzwischen zurückgesetzt. Bitte mache dort weiter, wo du
+aufgehört hast.” (sent twice; “continue”)</li>
+<li>“Now it should be fixed” (GitHub access restored; no content)</li>
+<li>“Well, how is it then best to proceed?” (request for a
+recommendation among the presented options; no argument content)</li>
+<li>“Very well. Can you give me now both paper 1 &amp; 2 as finished
+ones?”</li>
+<li>“Finish 2 as best as possible with what you have” (choice: option 2
+of the presented options, i.e. write from search results only, starting
+from the C08/S5 line: computability constraints on priors)</li>
+<li>“Ich habe mein Nutzungslimit erreicht, während du gearbeitet hast,
+aber es wurde inzwischen zurückgesetzt. Bitte mache dort weiter, wo du
+aufgehört hast.” (“continue”)</li>
+</ol>
+<h1 id="appendix-b.-the-pipeline-prompt">Appendix B. The pipeline
+prompt</h1>
+<p>The AI-generated pipeline prompt is reproduced verbatim in
+<code>paper2_prompt.md</code>. Every subagent prompt is reproduced
+verbatim in <code>11_prompts_appendix.md</code>.</p>
+</body>
+</html>

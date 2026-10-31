@@ -73,3 +73,13 @@
 - Human message 9 ("continue") logged.
 
 ## Phase 8, round 3 -> launched on v4
+- Rounds 3 to 5 and drafts v5 to v8: see 08_rounds.md. The panel stopped after round 5, without having reached the quiet condition.
+
+## Phase 9 -> 09_audit.md, 09_audit_report_raw.md
+- Fresh auditor on v8. 1 wrong attribution (Besicovitch), several partly verified items. All fixes applied in v9.
+
+## Phase 10 -> 10_final_checks.md, final.pdf
+- v10 (rendering fix only). 4,162 / 4,399 words. Anonymity and injection scans clean. 12 pages.
+
+## Phase 11 -> 11_methodology.md, 11_methodology.pdf, 11_prompts_appendix.md
+- Methodology report with statistics, deviations and limitations, every human input verbatim, and every subagent prompt (54) verbatim with local paths redacted.
