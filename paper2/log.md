@@ -22,3 +22,4 @@
 - Extended kill round: C19 KILLED (Garber 1983; Garrabrant et al. call it weak; Demski 2018), C04 KILLED (naturalness not a partition; Carlsson-Memoli possibility), C06 KILLED (Broad's definition; T-relative independence; Gu et al. 2009, Humphreys 2015, Murialdo et al. 2025), C02 KILLED (teleosemantics is consumer-based; readouts drift too).
 - Totals: 10 candidates tested; 9 killed, 1 damaged (C08). No intact survivor.
 - Decision (method, not human input): per the prompt, return to the tournament rather than defend a weak thesis. Each refuter proposed a narrower successor; these successors are written as new abstracts (02b_successors.md) and run through a second blind tournament and kill round.
+- Second cycle: six successors (02b_successors.md) proposed from the refuters' salvage suggestions. Blind round robin, 3 fresh judges x 15 pairs (tournament/succ_ranking.md): S1 15/15, S5 11/15, S2 9/15, S3 7/15, S4 3/15, S6 0/15. Kill round on S1, S5, S2.

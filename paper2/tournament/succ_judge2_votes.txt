@@ -1,0 +1,16 @@
+U4 vs U5 -> WINNER: U4
+U1 vs U4 -> WINNER: U1
+U3 vs U6 -> WINNER: U3
+U1 vs U6 -> WINNER: U1
+U2 vs U5 -> WINNER: U2
+U2 vs U4 -> WINNER: U2
+U3 vs U5 -> WINNER: U3
+U1 vs U5 -> WINNER: U1
+U5 vs U6 -> WINNER: U6
+U1 vs U2 -> WINNER: U2
+U3 vs U4 -> WINNER: U3
+U2 vs U3 -> WINNER: U3
+U1 vs U3 -> WINNER: U3
+U2 vs U6 -> WINNER: U2
+U4 vs U6 -> WINNER: U4
+# Ranking: U3, U2, U1, U4, U6, U5. Top weakness (U3): separating correlations need infinite-dimensional strategies of doubtful realizability; computational inaccessibility of predictions already familiar.
