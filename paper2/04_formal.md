@@ -101,3 +101,37 @@ uniform on (0,1): E[1/s] = oo; density 2s: E[1/s] = 2; density 3s^2: E[1/s] = 3/
 - *Validity check.* The step from "commits on all of GOOD" plus soundness to "the commit set equals GOOD" is a pure set inclusion. Soundness gives commit set ⊆ GOOD, and the hypothesis gives GOOD ⊆ commit set.
 
 Contrast (Lemma 3): on channel presentations the updater that reads the bound c and applies the AFR-dens algorithm commits on every input, and is sound.
+
+## Addendum 2 (after referee round 2): the main results of draft v4
+
+Round 2 (referees A, B, D) showed that Proposition 1' concerns *recognition* of updatable presentations, not *updating*. The procedure "run M for k steps; output the constant kernel unless M has halted" is correct on every updatable P_M. The following results replace it as the core.
+
+**Setting.** Hypothesis variables (I, Z), with I in {0,1} and Z in [0,1] (binary expansions). For n >= 2:
+- E_n is the union of the 2^(n-1) dyadic intervals of length 2^-2n on which binary digits n..2n of z are 0;
+- f_n is the continuous density that is a tent on each of these intervals, each tent of mass 2^-(n-1);
+- the prior μ_M is: I = 1 with probability w_M (= 2^-n if M halts at step n, else 0); given I = 0, Z is uniform; given I = 1, Z has density f_n.
+
+μ_M is computable uniformly in M (Lemma 1 argument). Checked numerically in `formal/prop2_tents.py`.
+
+**Proposition 2 (exact report: every member tractable, no uniform updater).** The source reports Z exactly.
+- *Each member is tractable.* For each M, the conditional distribution of I given Z = z is computable: Bayes with the two densities, for M fixed. So every μ_M is updatable on the exact report.
+- *No uniform procedure.* No single oracle procedure U, given a presentation of μ_M and z, computes a version of P[I | Z = z] on a measure-one set for every M.
+
+*Proof (recursion theorem).*
+1. Suppose U exists. Build M* which, knowing its own code, dovetails a search for a finite prefix σ and a finite run of U. The run is on the presentation of μ_{M*}, with oracle prefix σ, at precision 4, and outputs a measure m on {0,1} with d(m, δ_0) < 1/8.
+2. If the search succeeds after t steps, M* halts at a step n > max(t, |σ| + 1).
+3. Suppose M* never halts. Then μ_{M*} has I = 0 almost surely, and U must output δ_0 to within 1/16 for almost every z. So the search succeeds, a contradiction. Hence M* halts, at such an n.
+4. The run of U found in the search used fewer than n steps of any simulation of M*. So it is also U's actual computation on every z extending σ.
+5. On the central halves of the E_n intervals inside [σ] (a set of positive measure, since n - 1 >= |σ|), the true posterior gives I = 1 probability at least 2/3. Its distance from δ_0 is at least 2/3, so U's output is off by at least 2/3 - 1/8 > 1/16. This contradicts U's correctness.
+
+**Proposition 3 (noisy or coarse report: uniform updater).** The same priors μ_M, presented only as measures, give two positive results.
+- *(a) Noisy report.* Let the source report Y = Z + ξ, with ξ independent and with a presented bounded computable density. Then one procedure, uniform in the presentation of μ_M (indeed of any computable prior over the hypotheses), computes the posterior relative to y. Reason: posterior expectations are ratios of integrals of bounded computable functions against the computable prior. This is AFR's dominated-case argument (AFR 2019, Corollaries 9.6 and 9.7, reported). The denominator is positive for P_Y-almost every y.
+- *(b) Coarse report.* Let the source report a rational interval J containing Z. Then P(· | Z ∈ J) is computable uniformly. The reason is that μ_M(∂J) = 0 (Z is atomless), so μ_M(J ∩ A) and μ_M(J) are computable for the relevant A.
+
+So the obstacle lies in the exactness of the report, not in the prior over hypotheses.
+
+**Lemma 3' (joint density form).** Suppose the joint law of hypotheses and readings has a density q(h, y) with respect to μ ⊗ λ, presented as a computable function with a supplied bound. Then the posterior is computable relative to y, by the same ratio-of-integrals argument.
+- Application: Gaussian noise with unknown scale s, with prior π(s) ∝ e^(-1/s), taking s as a hypothesis variable. The joint density π(s) ∏ φ_s(y_i - h) is bounded, since s^(-n) e^(-1/s) is bounded on (0, 1), and it extends continuously to s = 0. So the posterior over (h, s) is computable for any n: the noise scale is learnable with no floor.
+- With π(s) = 2s and n = 2 the density is proportional to 1/s and is unbounded, so that case is not covered.
+
+**Proposition 1 and Corollary 1 are retained** only as an illustration of non-recognisability. They are now stated correctly as concerning recognition, with T computably axiomatized and interpreting enough arithmetic.

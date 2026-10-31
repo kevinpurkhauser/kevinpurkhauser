@@ -41,3 +41,37 @@ All points are new (first round). Substantive themes, with the change made in dr
     - A_0 notation fixed;
     - remarks about mechanical checks removed from the essay;
     - references updated (Rescorla pages, Garber pages, AFR 2011 pages, Lopez-Wild 2026 DOI, Huttegger et al. 2025, Rescorla 2025 added, unused AFR 2017 removed).
+
+## Round 2 (draft v3): fresh referees A-D, adjudicator (referee/r2_*.md, referee/r2_adjudication.md)
+
+| Role | [S] points | Verdict | O / C / I |
+|---|---|---|---|
+| A | 9 | major | 5 / 5 / 5 |
+| B | 12 | major | 5 / 5 / 4 |
+| C | 11 | major | 5 / 6 / 5 |
+| D | 10 | major | 6 / 6 / 5 |
+
+Adjudicator: 42 [S] points, which reduce to 22 distinct issues: 11 NEW and 11 REPEAT. All the repeats show that the v3 fix was at least partly inadequate. Most serious:
+- I1: Proposition 1' concerns recognition, not updating;
+- I2: FOLLOW's domain;
+- I7: "only if" not proved;
+- I3: representation-dependence is near-definitional;
+- I9: closure needs relativisation.
+
+Changes in draft v4 (a substantial rewrite):
+- I1: new core result. Proposition 2 is a uniformly computable family μ_M of priors over hypotheses (I, Z). Every member is updatable on an exact report of Z, and no single procedure updates them all (recursion-theorem proof). Proposition 3 shows that the same priors, with a noisy or a coarse (interval) report, are updated by one procedure. The old Propositions 1 and 1' and Corollary 1 move to Appendix B as an illustration of non-recognisability.
+- I2, I3, I6: FOLLOW is made format-relative and promise-style. It demands nothing on non-updatable presentations. The OIC/R3 binding argument is dropped. Thesis 2 is stated as format-relativity, with the represented-spaces precedent acknowledged (Weihrauch 2000). The normative weight is placed on Proposition 2, which shows that restricting priors is not the repair.
+- I5: Kripke finitude (competence vs performance) and the bad-format reply are adopted as the thesis.
+- I7: necessity claims removed; the claims are now sufficiency plus failure for exact reports.
+- I8: "noisy" replaced by "inexact (slack)", with an atomless reference measure.
+- I9: relativisation stated.
+- I10: the noise scale is learnable via the joint-density clause (sup e^(-1/s) s^(-n) = (n/e)^n).
+- I14: Rescorla 2025 no longer misapplied; Meehan and Zhang 2022 engaged.
+- I15: finite-precision interval evidence added as the second inexact format.
+- I16: the Marr-level caveat added.
+- I17: conservation laws are carried by the prior.
+- I18: "one of AFR's constructions".
+- I20: Corollaries 9.6 and 9.7 cited in the journal numbering.
+- I21: the "same tractable states" claim removed.
+- I22: the hypothesis/observation split is made part of the presentation.
+- I11, I12, I13: Corollary 1 is now in Appendix B with an arithmetic hypothesis; the Rice-Shapiro remark is dropped.
