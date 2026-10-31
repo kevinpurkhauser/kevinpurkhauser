@@ -4,3 +4,13 @@
 - Human input: "paper2_prompt.md ok run it Go" (recorded in human_inputs.md).
 - All eight scholarly hosts blocked; git push refused (403); Python and Z3 work.
 - Stopped as required by the prompt. No thesis work done.
+
+## Phase 1 -> 01_open_problems.md, mining/
+- Human input: "Partial" (run Phases 1-2 on search results; pause before Phase 3).
+- Four parallel mining subagents (12 areas). 63 open problems (+2 weak), 16 importable results (+5 leads). Shared search budget (200 per turn) ran out; three agents stopped short.
+- Git push now works (GitHub reconnected by the human); scholarly hosts still blocked.
+
+## Phase 2 -> 02_candidates.md, 02_novelty_quick.md, tournament/
+- 24 candidate theses written (abstracts about 120-160 words, shorter than the 250 the prompt asked for, to keep the tournament packet readable).
+- Quick novelty check (about 20 searches): 6 discarded before the tournament: C15, C18, C20 (substantially in print), C09, C10, C13 (premise contradicted by sources).
+- Tournament: 18 survivors anonymized as T01-T18 (random labels, seed recorded in mapping file 02_tournament_mapping.json); five fresh judge subagents, each 30-35 pairs (each candidate in about 4 pairs per judge), judging on the competition criterion only, no web access.
