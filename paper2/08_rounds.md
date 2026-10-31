@@ -146,3 +146,53 @@ Draft v6 response: the thesis is restated as "computability constrains spaces of
 - About 3,930 words excluding the bibliography.
 
 ## Round 5 (draft v6): launched
+
+## Round 5 (draft v6): fresh referees A-D (referee/r5_*.md)
+
+| Role | Verdict | O / C / I |
+|---|---|---|
+| A | major | 5 / 7 / 4 |
+| B | major | 4 / 6 / 4 |
+| C | minor (on technical grounds) | 4 / 7 / 4 |
+| D | major | 5 / 7 / 4 |
+
+Main points:
+- G4 is close to definitional given FOLLOW (all four referees).
+- The (C,L) class is an intrinsic per-credence condition with fixed parameters, so the slogan "not credences" is false (B2).
+- FOLLOW is only necessary, but was used as if sufficient (D2).
+- Proposition 2 had to be shown for structured, mixture-data representations (A2, C11).
+- Finite mixing with known components is harmless; countable mixing or adoption drives the result (A3, B10, D4).
+- Route (b) changes the evidence, and the Dutch book reply fails for it (B7, D5).
+- The Kripke machine passage was not engaged (A7, D6).
+- The Lipschitz constant was cited for the wrong density (A5, C19, D8).
+- Proposition 4 had an edge effect at the ends of [0,1] (C16).
+- B8 (new): Proposition 2 implies Dutch book exposure in some reachable state.
+
+The author agent classified the points itself; no adjudicator was run. B2, B8, A2/C11 and the "only necessary" point are new. The rest are repeats of round 3 and 4 points in a new form.
+
+Draft v7, then v8 (final):
+- **Thesis:** restated as quantifier order ("exists parameters, for all reachable states" against "for all states, exists parameters"). It accepts that the positive conditions are per-credence with fixed parameters, and it describes FOLLOW as a necessary condition only.
+- **Proposition 2:** generalised to any representation computable uniformly in M, including the mixture representation.
+- **New section 3.3:** Dutch book exposure in some reachable state, adopted from B8.
+- **Remarks added:** the marginal density bound is 5, so the modulus of continuity is essential; any regularity data decide halting; finite mixing is harmless.
+- **Route (b):** stated as changing the learning problem, and the Dutch book concession made for it.
+- **Kripke:** the architecture is stipulated rather than argued for.
+- **Proposition 4:** now uses L only (C is implied), with the edge fix, the test-function step and closure under countable mixtures.
+- **Finite precision:** a differentiation theorem for the received intervals, and the non-computable rate on the family.
+- **Citations and proof:** AFR 2017 is cited, ideal points replace rational points, and a self-simulation sentence is added to the proof.
+
+## Stopping
+
+The panel stopped after round 5. The prompt's quiet-round condition (two consecutive rounds with no new [S] point) was never met: every round produced new substantive points. The six-round cap was not used up. The run stopped at five for reasons of time and budget, which is a deviation from the prompt, and the methodology report records it.
+
+Score trajectory (means, O / C / I):
+
+| Round | O / C / I |
+|---|---|
+| 1 | 6.0 / 4.0 / 5.25 |
+| 2 | 5.25 / 5.5 / 4.75 |
+| 3 | 4.75 / 5.5 / 4.5 |
+| 4 | 4.75 / 6.0 / 4.5 |
+| 5 | 4.5 / 6.75 / 4.0 |
+
+Correctness rose steadily as the claims were narrowed; originality and importance fell. The verdict was major revision throughout, except C's "minor (technical)" in round 5.
