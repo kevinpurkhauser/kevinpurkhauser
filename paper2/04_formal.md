@@ -91,3 +91,13 @@ Argument 1 without P1 (expected NOT VALID): NOT VALID (sat)
 Argument 2 without P4 (expected NOT VALID): NOT VALID (sat)
 uniform on (0,1): E[1/s] = oo; density 2s: E[1/s] = 2; density 3s^2: E[1/s] = 3/2
 ```
+
+## Addendum after Phase 5 (reformulation forced by objection O2)
+
+**Proposition 1' (no sound general updater).**
+- *Definition.* A sound general updater is a procedure U with this behaviour on a presentation e. It either never commits, or at some finite stage commits to a program c that computes a version of the conditional distribution map of P_e on a measure-one set.
+- *Claim.* No sound general updater commits on every P_M with M in GOOD.
+- *Proof.* By the s-m-n theorem, a program for P_M is computable from M. If U committed on all of GOOD, then the set {M : U commits on P_M} would be c.e. By soundness and Lemma 2 it would equal GOOD, that is, the complement of the halting set, which is not c.e.
+- *Validity check.* The step from "commits on all of GOOD" plus soundness to "the commit set equals GOOD" is a pure set inclusion. Soundness gives commit set ⊆ GOOD, and the hypothesis gives GOOD ⊆ commit set.
+
+Contrast (Lemma 3): on channel presentations the updater that reads the bound c and applies the AFR-dens algorithm commits on every input, and is sound.
