@@ -15,3 +15,16 @@ The essay contains no direct quotations. Each attribution below lists the claim,
 | A9 | Hacking (1967), Garber (1983): logically equivalent beliefs, differing inferential reach (logical non-omniscience) | Standard; also recorded in Paper 2 kill round (C19) and refuter report S1 | n/a | standard |
 | A10 | Mahtani (2024): credences are hyperintensional, depending on mode of presentation | Publisher and LSE summaries: credence that Hesperus is bright may differ from credence that Phosphorus is bright | academic.oup.com/book/55758 | verified (summary) |
 | A11 | Freer and Roy (2010): posteriors computable from predictive distributions (exchangeable sequences) | Title and venue in search results (AISTATS 2010) | mlanthology.org/aistats/2010/freer2010aistats-posterior | partly verified (title only) |
+
+## Additions for drafts v3-v4
+
+| # | Attribution | Evidence | Source | Status |
+|---|---|---|---|---|
+| A12 | Rescorla (2025): non-factive Dutch book and converse theorems for Kolmogorov conditionalization (the conditioning proposition may be false) | Abstract snippet: "I prove a non-factive Dutch book theorem and converse Dutch book theorem for Kolmogorov conditionalization"; RSL 18(1), first published online 2023, doi 10.1017/S1755020323000345 | cambridge.org/core/journals/review-of-symbolic-logic/article/nonfactive-kolmogorov-conditionalization/43143C279BB1BF896E4AC48C0F14BF8A | verified (abstract) |
+| A13 | Meehan and Zhang (2022): Kolmogorov conditionalizers can be Dutch booked iff evidentially uncertain | Title; DBLP: RSL 15(3): 722-757 (2022); online 2020 | dblp.org/rec/journals/rsl/MeehanZ22.html | verified (title, bibliographic data); the application in section 6 is hedged ("as I understand it") |
+| A14 | AFR remark: conditional distributions cannot in general be uniformly approximated by shrinking noise | Search snippet of arXiv 1005.3014: "Corollary 9.7 implies that the conditional distribution of a random variable given a continuous observation cannot always be uniformly approximated using noise"; referees A and B (round 2) report confirming it | arxiv.org/pdf/1005.3014 | verified at snippet level |
+| A15 | AFR Corollaries 9.6 (density and independence) and 9.7 (independent noise), journal numbering | Round 2 referees C and A, via search: "9.7 is Independent noise, 9.6 is Density and independence" (journal); other versions number them differently | dl.acm.org/doi/10.1145/3321699 | partly verified |
+| A16 | One of AFR's constructions has a conditional distribution that is discontinuous on a measure-one set; another has a continuous version | Round 2 referee C, from search summaries | arXiv 1005.3014 | partly verified |
+| A17 | Kripke (1982): the finitude objection to rule-following | Standard | n/a | standard |
+| A18 | Weihrauch (2000): in computable analysis, the computability of an operation depends on the representation | Standard textbook | n/a | standard |
+| A19 | Freer and Roy (2010), PMLR 9: 233-240 | Round 2 referee C, via proceedings.mlr.press/v9/freer10a.html | proceedings.mlr.press/v9/freer10a.html | verified (bibliographic) |

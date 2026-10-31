@@ -64,3 +64,12 @@
 
 ## Phase 8 calibration -> referee/role_prompts_v1.md, referee/00_calibration_key.md
 - Two decoys, three planted errors each. Roles A and B on decoy 1, C and D on decoy 2.
+
+## Phase 8, rounds 1-2 -> referee/, 08_rounds.md, drafts v3-v4
+- Calibration passed for all roles on the first try (detection 10/12).
+- Round 1 (calibration reports, unplanted points): 36 [S] points, all major. Draft v3 fixed the R-argument (OIC), kernel-level correctness, Corollary 1 hypotheses, the noise floor, N3 scope, labelling, the Dutch book and others.
+- Round 2 on v3: 42 [S] points, 22 distinct issues (11 new, 11 repeat). The key finding (B1): Proposition 1' concerns recognition, not updating.
+- New own result, Proposition 2: a uniformly computable family of tractable priors, with an exact report, has no uniform updater (recursion theorem). Proposition 3: the same priors with a noisy or coarse report have a uniform updater. Draft v4 is rebuilt around these. The thesis is now: exactness of evidence, not priors, is the obstacle; format-relativity; inexact evidence (density or interval) suffices.
+- Human message 9 ("continue") logged.
+
+## Phase 8, round 3 -> launched on v4
