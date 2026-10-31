@@ -1,0 +1,60 @@
+# Round 5: role D (generalist) on draft v6
+
+Report reproduced verbatim from the subagent's hand-back.
+
+Referee report: "Following Conditionalization: Computability Constrains Spaces of Credences, Not Credences"
+
+Summary of contribution. The paper builds a uniformly computable family of priors. Each member has a continuous, computable posterior on an exact observation, yet no single algorithm updates every member, and the paper uses this to argue that for an agent who adopts and mixes priors, "following" conditionalization requires uniform regularity across the agent's reachable credal states rather than computability of each prior. What it adds to philosophical knowledge is a clean, correct example that moves the familiar gap between pointwise and uniform computability into Bayesian epistemology. It also gives a useful taxonomy of three ways to restore uniformity (fixed constants, presented regularity data, a noisy channel). The holism thesis it draws from this is, however, largely built into its definition of following.
+
+Checks performed. I checked the construction, Lemma 1, the posterior formula, the appendix proof of Proposition 2, Propositions 3 and 4, and the bibliography as far as possible without sources. The core mathematics is correct. Specifically:
+- E_n has 2^{n-1} intervals of length 2^{-2n}.
+- Tents of mass 2^{-(n-1)} on these intervals give total mass 1 and peak height 2^{n+2}, and the height is at least 2^{n+1} on the central half of each interval.
+- The omitted weight in Lemma 1 is at most 2^{-k-3}.
+- The bound 2/((1-2^{-n})+2) > 2/3 holds.
+- The "every point of K has a name extending tau" step and the dovetailing argument both work.
+- The 4C delta boundary estimate in Proposition 4 is right.
+- Lévy's upward theorem is applied correctly in Section 5.
+
+Points
+
+1. [S] The thesis (G4) is close to definitional. FOLLOW is defined as a condition on the whole space of reachable states (Section 2: "a single procedure is correct on every reachable state that is updatable"). Given that definition, it is trivial that whether an agent satisfies FOLLOW "depends on which other credence functions the agent could have held". The real content is Proposition 2: per-state computability does not imply uniform computability. That is an instance of a well-known phenomenon in computable analysis. The "holism about rational credence that is new to this debate" (4.3) therefore says more than the argument delivers. Fix: argue independently that FOLLOW, rather than a per-state notion of following, is the right analysis of rule-following for updating, for instance by defending the claim that the prior occupies the argument place (4.2) against the fixed-prior objection for agents who adopt priors. Alternatively, present G4 as a consequence of a stipulated notion and moderate the novelty claim.
+
+2. [S] FOLLOW is a necessary condition ("only if"), but G3 and G4 use it as if it were sufficient. G4 says that whether an agent follows the rule "is settled by which states it can reach", and Section 4.3 says Propositions 3 and 4 "show what is needed". Propositions 3 and 4 only show that the necessary condition can be met. Fix: either state FOLLOW as a biconditional and defend that, or weaken G3 and G4 to "is not ruled out" or "is compatible with". The conclusion of the argument in 4.2 should match.
+
+3. [S] G2 and Introduction item 1 overclaim. They say that "every state it can reach satisfies the per-prior requirement." Closure under (X) gives far more than the family {mu_M}. For example, countable mixtures of the B_n with computable weights that encode halting times (weights 2^{-n-s} with s a halting time) plausibly yield states whose posteriors are not computable, in the manner of AFR. The same goes for posteriors of mixtures and mixtures of posteriors. FOLLOW exempts non-updatable states, so the argument survives, but the stated claim is unsupported and probably false. Fix: say "every member of the family satisfies the per-prior requirement", or prove closure.
+
+4. [S] The format of presentations is underspecified, and the role of countable mixing is misdescribed. In the appendix the procedure takes a presentation as an index e* (hence the recursion theorem). If presentations are instead given as oracles (streams of approximations), a simpler continuity argument already defeats any procedure on the countable set {(1-2^{-n})A + 2^{-n}B_n : n} together with A. That set is reachable by finite mixing alone, because these measures converge to A in the Prokhorov metric. On the other hand, an agent who forms a finite mixture knows its components and their regularity, and FOLLOW then throws that information away by requiring the procedure to work from bare measure presentations. The paper's motivating example of (X), "uncertainty about which of several models is right", is finite mixing. So the result's dependence on countable mixing, and on discarding information that the operations generate, needs to be made explicit. I checked that the result is robust for countable mixtures even if components and weights are retained: the tail sum of p_n f_n is bounded only by 4, not uniformly small. Fix:
+   - specify whether presentations are indices or oracles;
+   - let the procedure receive whatever data the operations produce;
+   - state that finite mixing with retained components is uniformly updatable via Proposition 3(a), so that countable mixing or unrestricted adoption (A) is what drives the result.
+
+5. [S] The Dutch book reply (Section 5) is false for route (b). The paper says "An agent using any of the three routes conditionalizes its own prior on what it learns". On route (b) the agent replaces the exact observation Z = z with a noisy reading Y = Z + xi. If what the agent learns is Z = z, it conditionalizes an extended prior on a different proposition. Its resulting credences about I then generally differ from Kolmogorov conditionalization on Z = z, and Rescorla's (2018) converse result does give a handle. Fix: restrict the reply to routes (a) and Proposition 4. For route (b), argue that the agent's evidence really is the reading Y, which concedes that route (b) changes the learning problem rather than solving it. This also weakens the 4.3 claim that route (b) is the only route for an agent who must adopt any prior: it is available only by giving up exact conditionalization on the quantity of interest.
+
+6. [S] The reading of Kripke is implausible. Section 4.2 says FOLLOW "does not rely on dispositions. For an engineered system, which procedure runs is fixed by its code." Kripke (1982) explicitly considers machines and argues that a physical machine's behaviour, or its program, fixes which function it computes only relative to its designer's intentions, because machines are finite and can malfunction. Treating code as settling the matter begs exactly that question. FOLLOW is also itself modal: "reachable states" are states the agent could have held, so a dispositional element comes back in. Fix: engage with Kripke's machine passage, or drop the claim and treat reachability as a stipulated architectural fact.
+
+7. [S] Novelty relative to AFR needs to be stated precisely. The paper concedes that Proposition 2 is a "close relative" of AFR's discontinuity-of-conditioning results and of Hoyrup, Rojas and Weihrauch (2012). As far as I recall, AFR (2019) already show that the conditioning operator is not continuous, hence not computable, even on measures whose conditional distributions are well behaved. If so, Proposition 2 is a corollary or variant. Fix: state the closest AFR theorem and say exactly what Proposition 2 adds (uniform computability of the family, continuity of each posterior, generation by mixing).
+
+8. [S] The constant cited after Proposition 4 does not match the definition in Proposition 4. The text says "The Lipschitz constant of the I = 1 part, 2^{-n} f_n, grows like 2^{2n}." In Proposition 4, however, q is the density with respect to rho ⊗ Leb, where rho is the H-marginal. So q(1, ·) = f_n, whose slope is 2^{n+2}/2^{-2n-1} = 2^{3n+3}, and whose height 2^{n+2} also violates any fixed C. The conclusion (no single class contains the family) stands, but the stated figure belongs to the wrong quantity. Fix: give the constant for q as defined.
+
+9. [P] In Proposition 4 the bound C is redundant on [0,1]. Since rho is the H-marginal, q(h, ·) integrates to 1 for rho-almost every h. An L-Lipschitz probability density on [0,1] is bounded by 1 + L/2. Separately, the Lipschitz estimate fails for balls that stick out of [0,1]; intersect B with [0,1] and normalize by its length, or note that almost every y is interior and epsilon can be taken small.
+
+10. [P] In Proposition 3(a), the requirement that lambda be atomless plays no role in the argument and could be dropped or explained. In 3(b), phi must be a computable, and hence continuous, density. The common uniform noise model does not qualify, and this is worth saying.
+
+11. [P] The description of the components as "the two most innocent laws there are" (3.2) is rhetorical. A comb of tents with peaks 2^{n+2} and slopes of order 2^{3n} is exactly the non-innocent ingredient. The point that each member is individually benign is better made without this phrase.
+
+12. [P] The "per-prior response" is held by no named author (Section 1). That is honest, but it lowers the dialectical payoff. Citing someone who comes close (for instance in the bounded-rationality or probabilistic programming literature) would help. Otherwise, frame the paper as clarifying what a computability constraint on credence should look like, which is what 4.3 ("the orthodox constraint can be done properly") in effect does.
+
+13. [P] The paper never models the updated state's role in later updates (what Y is next time), even though FOLLOW quantifies over iterated reachable states. One sentence on closure would help. I checked that the class in Proposition 4 is closed under mixtures, since the mixture density is a pointwise convex combination.
+
+Bibliographic and attribution checks
+
+- Correct as far as I can tell: AFR 2011 (LICS, 107-116) and 2019 (JACM 66(3), Article 23); Hacking 1967 (Philosophy of Science 34(4): 311-325); Garber 1983 (Minnesota Studies 10, 99-131); Heitjan and Rubin 1991 (Annals of Statistics 19(4): 2244-2253); Hoyrup, Rojas and Weihrauch 2012 (Computability 1(1): 3-13); Kripke 1982; Marr 1982; Shan and Ramsey, POPL 2017; Weihrauch 2000; Kolmogorov 1933; Rescorla 2018 (Review of Symbolic Logic 11(4)). The remark that regular versions came after Kolmogorov is accurate.
+- Huttegger, Walsh and Zaffora Blando 2025: "Philosophy and Phenomenological Research 112(1)" looks inconsistent with a 2025 date, since PPR volume 112 would fall in 2026. Check the year or volume, and the exact title, which I cannot confirm.
+- Not verifiable without sources: Rescorla 2025 (Review of Symbolic Logic 18(1)); Lopez-Wild 2026 and the attributed result that there are no computable merely finitely additive measures on countably generated spaces (plausible, but the precise setting should be stated); the pointer "AFR 2019, Section 9" for the dominated-case argument (please check the section number).
+- The characterization of Mahtani (2024) as concerning modes of presentation is plausible. The use of Weihrauch for representation dependence is accurate.
+
+Overall assessment. The paper is technically careful, and the central construction is valid. It is also honest about its limits: the evaluative ideal is untouched, and fixed-prior agents are conceded. Its philosophical gain is smaller than claimed, though. The global character of the constraint follows mostly from defining following globally. The Dutch book reply misfires for the noisy-channel route. The reading of Kripke is not tenable. The paper's own example of mixing (finitely many models) does not generate the problem unless information is thrown away. These problems can be fixed but would change the stated claims.
+
+Verdict: major revision.
+
+Scores: originality 5, correctness 7, importance 4.
