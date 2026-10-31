@@ -106,3 +106,43 @@ Draft v5 response (full rewrite, about 4,170 words excluding the bibliography):
 ## Round 4 (draft v5): launched
 
 Round 3 adjudication (referee/r3_adjudication.md): 42 [S] points, which reduce to 21 distinct issues, 6 NEW and 15 REPEAT. The most serious are I1 (exactness confounded with a presented density), I3 (interval format false with atoms), I7 (novelty versus Hoyrup-Rojas-Weihrauch), I2 (labelling) and I6 ("inexact" mis-described). All of these were addressed in v5 before the adjudication arrived. I1, I2 and I6 are dissolved by the restated thesis. I3, I4 and I5 by the recast interval route. I7 by citation and positioning. I8, I9, I12 and I16 to I18 by the framework and proof repairs. I10 and I11 by removing Appendix B and Meehan-Zhang.
+
+## Round 4 (draft v5): fresh referees A-D (referee/r4_*.md)
+
+| Role | Verdict | O / C / I |
+|---|---|---|
+| A | major | 4 / 6 / 4 |
+| B | major | 4 / 6 / 4 |
+| C | major | 5 / 6 / 5 |
+| D | major | 6 / 6 / 5 |
+
+Main points:
+- A1, D1: a class-level constraint with fixed density bound C and Lipschitz constant L gives a uniform procedure from measure presentations alone. So "constraints on credence functions do not suffice" is false as stated; what is needed is uniform moduli of regularity.
+- A2, B4, C8, D2: Proposition 3(a) works only because the presentation encodes the halting time.
+- A3, B2, D3: FOLLOW's closure is unspecified; a stored-kernel format would satisfy it.
+- A4, B1: the fixed-prior agent is not addressed; priors are not the inputs of the rule.
+- A5, B8, C12, D8: "no exact dependence" is definitional, or fails under reparametrisation.
+- Repairs:
+  - the proof needs K ⊂ [0,1] and a name with slack;
+  - F3 closure needs a common reference measure;
+  - Lévy holds only for fixed filtrations;
+  - the rate claim in the abstract is too strong;
+  - "only if" for CAR should be "if";
+  - the AFR pinpoint is uncertain;
+  - the Lopez-Wild qualifier is needed.
+
+No adjudicator was run for round 4. The author agent classified the points itself: the class-level counterexample (A1, D1) and the operations list (A3, B2) are new in substance; most of the rest repeats earlier rounds.
+
+Draft v6 response: the thesis is restated as "computability constrains spaces of credal states, not credence functions".
+- FOLLOW quantifies over states reachable by explicit operations (update, adopt, mix).
+- New Proposition 4 (own sketch): the fixed-constant class gives a uniform procedure, so the orthodox constraint "done properly" is accommodated.
+- Proposition 3 now covers presented data (a) and a regular source model (b); (b) is uniform in M.
+- The fixed-prior agent is conceded.
+- The family is shown to arise by countable computable mixture, which gives the closure argument against stored-kernel formats.
+- "No exact dependence" is withdrawn.
+- The proof is repaired (K ⊂ [0,1], names with slack).
+- Lévy is restricted to fixed partitions; the rate claim is dropped; CAR is now "if".
+- Shan and Ramsey 2017 is added.
+- About 3,930 words excluding the bibliography.
+
+## Round 5 (draft v6): launched
