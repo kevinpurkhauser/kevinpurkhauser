@@ -104,3 +104,5 @@ Draft v5 response (full rewrite, about 4,170 words excluding the bibliography):
 - **Removed:** Appendix B (non-recognisability, Gödel) and the remaining "noise" framing.
 
 ## Round 4 (draft v5): launched
+
+Round 3 adjudication (referee/r3_adjudication.md): 42 [S] points, which reduce to 21 distinct issues, 6 NEW and 15 REPEAT. The most serious are I1 (exactness confounded with a presented density), I3 (interval format false with atoms), I7 (novelty versus Hoyrup-Rojas-Weihrauch), I2 (labelling) and I6 ("inexact" mis-described). All of these were addressed in v5 before the adjudication arrived. I1, I2 and I6 are dissolved by the restated thesis. I3, I4 and I5 by the recast interval route. I7 by citation and positioning. I8, I9, I12 and I16 to I18 by the framework and proof repairs. I10 and I11 by removing Appendix B and Meehan-Zhang.
