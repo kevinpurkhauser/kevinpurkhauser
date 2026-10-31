@@ -1,0 +1,380 @@
+Following Conditionalization: Per-Prior
+Computability Is Not Enough
+Abstract. Ackerman, Freer and Roy showed that some computable priors have
+conditional distributions that no algorithm can compute. A natural response is to
+require that a computable agent’s prior have computable conditional
+distributions. I show that, for an agent who may adopt new priors (for instance
+models given as programs) or form countable mixtures of priors, this per-prior
+requirement does not make conditionalization a rule the agent can follow. I
+construct a uniformly computable family of priors, built from a uniform law and a
+comb of tents. Each member has a continuous, computable posterior on an exact
+observation, yet no single procedure updates them all, and so any ﬁxed updating
+procedure is, in some state the agent can reach, exposed to a Dutch book. What
+restores a single procedure is a regularity condition with ﬁxed parameters. The
+thesis is about quantiﬁer order. A condition of the form “each prior is regular to
+some degree” does not suﬀice. A condition of the form “there is a degree of
+regularity that every reachable prior meets” does. The uniformity can come from
+three sources: - ﬁxed constants in the class of admissible priors; - regularity data
+supplied with each prior; - a regular model of the evidence source, which changes
+the evidence.
+So computability constrains rule-following credence only through conditions that
+are uniform across the states an agent can come to hold. The ideal reading of
+conditionalization is untouched.
+1. Introduction
+When a Bayesian agent learns that a continuous quantity took the value 𝑦, the
+learned event has probability zero and the ratio formula is silent. The standard
+answer is Kolmogorov conditionalization. The new credence is given by a regular
+conditional distribution: a kernel 𝑦 ↦ 𝑃[ ⋅ ∣ 𝑌= 𝑦] that disintegrates the prior and
+is ﬁxed up to observations of measure zero. (Kolmogorov 1933 gives the measure-
+theoretic notion of conditional probability; regular versions came later.) Rescorla
+(2018) proves Dutch book and converse Dutch book theorems for this rule, and
+Rescorla (2025) extends them to scenarios in which the conditioning proposition
+may be false.
+Ackerman, Freer and Roy (2011, 2019; hereafter AFR) showed that the rule can
+outrun computation. There are computable random variables 𝑋 and 𝑌 whose
+conditional distribution of 𝑋 given 𝑌 is not computable on any set of measure one.
+Computability has been used to constrain credence functions in other respects.
+Lopez-Wild (2026) argues that, on countably generated spaces, there are nocomputable merely ﬁnitely additive probability measures, and Huttegger, Walsh
+and Zaﬀora Blando (2026) study convergence to the truth for computable priors.
+A response to AFR then suggests itself: a computable agent must hold a prior
+whose conditional distributions are computable. I call this the per-prior
+requirement. I treat it as a natural position rather than one I attribute to the
+authors just cited. Specialists in computable analysis know that pointwise
+computability does not give uniform computability. The question here is what that
+distinction means for the epistemology of updating, which has not been asked.
+The thesis has four parts.
+1. Failure of the per-prior requirement for open agents (Proposition 2).
+Some agents can adopt priors presented as programs, or form countable
+computable mixtures of priors they can hold. For such agents the per-prior
+requirement can hold of every member of a reachable family while no single
+procedure updates them all.
+2. A Dutch book consequence. It follows that any ﬁxed updating procedure
+such an agent uses departs from Kolmogorov conditionalization, on a set of
+positive measure, in some reachable state. By Rescorla’s theorem the agent
+is then exposed to a Dutch book in that state.
+3. What suﬀices (Propositions 3 and 4). A single procedure exists when there
+is a ﬁxed degree of regularity that every reachable state meets, or when
+equivalent information is supplied with each state, or when the evidence
+comes through a ﬁxed regular channel.
+4. Quantiﬁer order. The computability condition that matters for a rule-
+following agent has the form “there are constants that every reachable state
+meets”, not “every state meets some constants”. Each of the paper’s positive
+conditions is a property of individual credence functions, but with
+parameters ﬁxed across the agent’s reachable space.
+The mathematics is elementary. Proposition 2 is a diagonal argument of a known
+kind: it is a close relative of the non-computability of the Radon-Nikodym operator
+(Hoyrup, Rojas and Weihrauch 2012) and of AFR’s results on discontinuous
+conditional distributions and on the non-computability of the disintegration
+operator (Ackerman, Freer and Roy 2019, 2017). The positive results apply AFR’s
+theorem for bounded densities. Practitioners of probabilistic programming
+already condition on continuous data through likelihood densities. For instance,
+Shan and Ramsey (2017) compute disintegrations symbolically, which yields
+density-based conditioning on continuous observations. What is oﬀered here is an
+epistemological consequence. A computability constraint on updating cannot be
+stated prior by prior with existential parameters. It needs ﬁxed parameters, and
+so it is answerable to what else the agent could come to believe.
+The scope is limited in four ways. - Nothing here concerns conditionalization as an
+evaluative ideal. - Nothing here concerns discrete evidence. - For an agent withone ﬁxed prior that changes only by conditionalization, nothing here goes beyond
+the per-prior requirement. - I treat a single observation. Iterated observation
+raises further questions, which I leave aside.
+2. Framework
+Computable measures. I work in computable probability theory. - Spaces are
+computable metric spaces. - A point is given by a Cauchy name: rationals 𝑞1, 𝑞2,…
+with |𝑞𝑖 − 𝑥|<2−𝑖 . - A probability measure is computable if some program, on input
+𝑘, outputs a ﬁnitely supported measure with rational weights on ideal points
+within Prokhorov distance 2−𝑘  of it. The index of such a program is a measure
+presentation.
+Credal states and updating. A credal state is a measure on 𝐻× 𝑌, where 𝐻
+collects the hypothesis variables and 𝑌 is the observation the agent is about to
+learn. - An updating procedure takes an index of a presentation of a credal state,
+possibly together with further data, and a name of 𝑦 as an oracle. It outputs
+approximations to a posterior over 𝐻. - It is correct on a state if there is a version
+𝜅 of the conditional distribution such that, for 𝑃𝑌 -almost every 𝑦 and every name
+of 𝑦, its output converges to 𝜅(𝑦) at the advertised precision. - A state is updatable
+if some procedure is correct on it.
+Two readings of the rule. - On the ideal reading, conditionalization is a
+standard. The correct kernel exists whether or not anyone computes it. - On the
+followed reading, it is something the agent does, in the way someone adds by
+following the rule for addition.
+The followed reading is in play when a Bayesian model is oﬀered as an
+algorithmic-level account of how a mind or machine learns, in the sense of Marr
+(1982). It is also in play for systems that actually perform the updates.
+Operations. An agent’s credal state can change in three ways: - (U) updating; -
+(A) adopting a prior from a class 𝒞 of presentations, such as a model received as
+a program or built from data; - (X) forming countable mixtures, with computable
+weights, of uniformly presented states the agent can hold.
+The reachable states are those obtainable from the initial state by these
+operations.
+FOLLOW. A computable agent follows conditionalization only if a single
+procedure, applied to its states in the form its operations deliver them, is correct
+on every reachable state that is updatable.
+FOLLOW is a necessary condition only. It asks for no proof of correctness. It
+places no demand on states that no procedure could update. I take the form in
+which states are delivered, and the set of operations, to be facts about the agent’sarchitecture. For engineered systems they are ﬁxed by design. For human
+learners, which operations they have and in what form is an empirical question
+that I leave open. Kripke (1982) argued that which function a physical machine
+computes, and so whether it has malfunctioned, is ﬁxed only relative to the
+program its designer intended. I do not try to answer that worry. I stipulate the
+architecture, and ask what follows given it.
+3. The family
+3.1 Construction
+Let 𝑍 ∈[0,1] and 𝐼 ∈{0,1}. For 𝑛≥2, let 𝐸𝑛  be the set of 𝑧 whose binary digits in
+positions 𝑛 to 2𝑛 are all 0. 𝐸𝑛  is a union of 2𝑛−1  intervals of length 2−2𝑛 . Let 𝑓𝑛  be
+the continuous density that places a tent of mass 2−(𝑛−1)  on each of these
+intervals. The peak height of 𝑓𝑛  is 2𝑛+2 , its slope is 23𝑛+3 , and on the central half of
+each interval its value is at least 2𝑛+1 .
+Let 𝐴= 𝛿0 ⊗Leb and 𝐵𝑛 = 𝛿1 ⊗𝑓𝑛 Leb. Both are computable uniformly in 𝑛.
+For a Turing machine 𝑀: - if 𝑀 halts at step 𝑚, let 𝑛= 𝑚+2 and
+𝜇𝑀 =(1−2−𝑛)𝐴+2−𝑛 𝐵𝑛 ; - if 𝑀 never halts, 𝜇𝑀 = 𝐴.
+Equivalently, 𝜇𝑀  is the countable mixture ∑𝑛 𝑝𝑛(𝑀) 𝐵𝑛 +(1− ∑𝑛 𝑝𝑛(𝑀))𝐴, where
+𝑝𝑛(𝑀)=2−𝑛  if 𝑀 halts at step 𝑛−2 and 𝑝𝑛(𝑀)=0 otherwise. Each 𝑝𝑛(𝑀) is decidable,
+and the residual weight is a computable real.
+Lemma 1. 𝜇𝑀  is computable uniformly in 𝑀, and so is its mixture representation
+(the components 𝐴, 𝐵2, 𝐵3,… and the weights 𝑝𝑛(𝑀)).
+Proof. Run 𝑀 for 𝑘 steps. If 𝑀 has halted, approximate the mixture to within 2−𝑘−1 .
+If not, approximate 𝐴 to within 2−𝑘−1 ; the omitted weight is at most 2−𝑘−3 , and
+total variation bounds Prokhorov distance.
+3.2 Each member is tractable; no procedure handles them all
+The agent observes 𝑍 exactly, so 𝐻= 𝐼 and 𝑌= 𝑍. If 𝑀 halts, then for each 𝑀
+𝑃𝑀(𝐼=1 ∣ 𝑍= 𝑧)= 2−𝑛 𝑓𝑛(𝑧)
+(1−2−𝑛)+2−𝑛 𝑓𝑛(𝑧)
+.
+If 𝑀 never halts, the posterior is 0. Either way it is a continuous and computable
+function of 𝑧. So every 𝜇𝑀  satisﬁes the per-prior requirement.
+Proposition 2. Fix any representation of 𝜇𝑀  computable uniformly in 𝑀, such as
+the measure presentation or the mixture representation of Lemma 1. Then no
+single procedure taking that representation as input is correct on every 𝜇𝑀 .Sketch. Suppose 𝑈 were correct on every member. By the recursion theorem,
+build a machine 𝑀*  that searches for two things: - a ﬁnite segment of a name of
+an observation, leaving a rational interval 𝐾 ⊆[0,1] of possible values; - a ﬁnite
+run of 𝑈 on the representation of 𝜇𝑀*  that reads only that segment and outputs a
+posterior within 1/8 of “𝐼=0 for certain”.
+The search must succeed. If 𝑀*  never halted, 𝐼=0 would be certain, and a correct
+𝑈 would output that posterior on almost every observation after reading a ﬁnite
+segment.
+When the search succeeds, 𝑀*  halts late enough that 2−(𝑛−1)  is less than half the
+width of 𝐾. 𝑈’s run is a ﬁxed ﬁnite computation, so it gives the same output on
+every observation in 𝐾. But 𝐾 contains an interval of 𝐸𝑛  whose central half has
+positive measure, and on that half the true posterior gives 𝐼=1 probability above
+2/3. So 𝑈 is wrong on a set of positive measure. The appendix gives details.
+Three remarks. 1. The marginal density of 𝑍 is at most 5 throughout the family, so
+a uniform density bound on the observation is not enough. What grows without
+bound is the modulus of continuity. 2. Any regularity data that would rescue a
+procedure, such as a bound on 𝑓𝑛 , decide whether 𝑀 halts. Run 𝑀 for about log2
+of the bound many steps: if it has not halted by then, it never will. So such data
+cannot be computed from 𝑀. 3. The family is reachable by (X), as a countable
+computable mixture of uniformly presented, trivially updatable components. It is
+reachable by (X) provided 𝐴 and the 𝐵𝑛  are themselves reachable, for instance as
+adoptable models. It is also reachable by (A) for any class 𝒞 that contains it, for
+example the class of all measure-presented priors with continuous bounded
+densities. Finite mixing of ﬁnitely many known components does not generate the
+family. An agent that mixes ﬁnitely many models and keeps their densities can
+update the result (Proposition 3a). The result therefore concerns agents that can
+adopt priors given as programs, or mix countably.
+3.3 The Dutch book consequence
+Let an agent whose reachable states include the family use any ﬁxed procedure 𝑈.
+By Proposition 2 there is a reachable state 𝜇𝑀  on which 𝑈’s update diﬀers from
+every version of the conditional distribution, on a set of observations of positive
+probability. Extend 𝑈 to a total update rule by assigning any ﬁxed measure
+wherever it fails to converge. The extended rule still diﬀers from every version of
+the conditional distribution on a set of positive probability. Rescorla’s (2018)
+Dutch book theorem, as I read it, applies to an agent whose update rule departs
+from Kolmogorov conditionalization of its own prior on a set of positive prior
+probability. So such an agent is exposed to a Dutch book in that state.
+So the failure of uniformity is not only a failure of rule-following. It has the
+pragmatic cost that the orthodox view itself recognises, located in a particular
+state. That location is the orthodox view’s own, and I accept it. The present pointis that no ﬁxed procedure avoids every such state, although each state, taken
+alone, can be updated correctly.
+4. What suﬀices
+4.1 Three sources of uniformity
+Proposition 3. - (a) Supplied regularity data. Suppose each state is given as a
+measure 𝜌 on 𝐻, a computable function 𝑞(ℎ, 𝑦) with ∫ 𝑞 𝑑(𝜌 ⊗𝜆)=1, a rational
+bound 𝑐≥ 𝑞, and a computable reference measure 𝜆, so that the state is 𝑞 𝜌 ⊗𝜆.
+Then one procedure is correct on all such states. The posterior expectation of a
+bounded continuous 𝑔 is ∫ 𝑔𝑞( ⋅, 𝑦) 𝑑𝜌/ ∫ 𝑞( ⋅, 𝑦) 𝑑𝜌. Both integrals involve bounded
+computable functions with known bounds, so they are computable relative to 𝑦,
+uniformly in the data. The denominator is positive for 𝑃𝑌 -almost every 𝑦. This is
+AFR’s argument for the dominated setting (AFR 2019, positive results). For
+Proposition 2’s family these data are not computable from 𝑀 (remark 2 above). -
+(b) A ﬁxed regular channel. Suppose instead the agent learns a reading
+𝑌= 𝑍+ 𝜉, where 𝜉 is independent and has a ﬁxed computable bounded density 𝜑.
+Taking 𝐻=(𝐼, 𝑍), 𝜌= 𝜇𝑀  and 𝑞(ℎ, 𝑦)= 𝜑(𝑦− 𝑧) places the state in case (a), with data
+computable uniformly in 𝑀. So one procedure updates every member of the family
+on the noisy reading. This is a case of AFR’s result for conditioning on
+observations corrupted by independent noise; the derivation from (a) needs only
+that 𝜑 be bounded and computable. It does not update on the exact value of 𝑍. It
+solves a diﬀerent learning problem, in which what is learned is the reading.
+Proposition 4 (ﬁxed constants). Fix 𝐿. Let 𝒞𝐿  be the class of measures on
+𝐻×[0,1] whose density 𝑞(ℎ, ⋅) of 𝑌 given ℎ, with respect to Lebesgue measure, is 𝐿-
+Lipschitz for 𝜌-almost every ℎ, where 𝜌 is the 𝐻-marginal. Then one procedure,
+given only measure presentations, is correct on every member of 𝒞𝐿 .
+Sketch. 1. Each 𝑞(ℎ, ⋅) is a probability density that is 𝐿-Lipschitz, so it is bounded
+by 𝐶=1+ 𝐿/2, and 𝑃𝑌  has density at most 𝐶. 2. From the name of 𝑦, ﬁnd 𝛿>0 with
+𝑦 ∈(𝛿,1− 𝛿). This is possible for every 𝑦 in the open interval, which has probability
+one. Take balls 𝐵 around 𝑦 of radius 𝜀< 𝛿. 3. The probability of lying within 𝜂 of
+the boundary of 𝐵 is at most 4𝐶𝜂. So 𝑃(𝑔(𝐻); 𝑌 ∈ 𝐵) and 𝑃(𝑌 ∈ 𝐵) are computable
+from the measure presentation, uniformly in 𝐿. 4. By the Lipschitz bound, dividing
+these by 2𝜀 approximates ∫ 𝑔 𝑞( ⋅, 𝑦) 𝑑𝜌 and 𝑝(𝑦)= ∫ 𝑞( ⋅, 𝑦) 𝑑𝜌 to within ∥ 𝑔 ∥ 𝐿𝜀 and 𝐿𝜀
+. 5. Where 𝑝(𝑦)>0, which holds 𝑃𝑌 -almost surely, a positive lower bound on 𝑝(𝑦) is
+found from these approximations, and the ratio then converges at a computable
+rate. 6. Since a probability measure is computable when its integrals of bounded
+Lipschitz test functions are uniformly computable, this yields the posterior.
+𝒞𝐿  is closed under countable mixtures, because each mixture density is a
+pointwise convex combination of the component densities. So an agent conﬁnedto 𝒞𝐿  stays there under (A) and (X), provided its adoptable class lies in 𝒞𝐿 .
+Proposition 2’s family lies in no 𝒞𝐿 , since 𝑞(1, ⋅)= 𝑓𝑛  has slope 23𝑛+3 .
+4.2 Quantiﬁer order
+The argument combines FOLLOW with the propositions.
+1. (Q1) FOLLOW.
+2. (Q2) The per-prior requirement says that every reachable state is updatable.
+Equivalently, for each reachable state there is some degree of regularity it
+meets. By Proposition 2, an agent can satisfy this while failing FOLLOW.
+3. (Q3) The condition “there is an 𝐿 such that every reachable state lies in 𝒞𝐿 ”
+guarantees a single correct procedure (Proposition 4). So does a single
+regular channel for all reachable states (Proposition 3b), or supplied data
+with known bounds (Proposition 3a). These do not show that FOLLOW is
+satisﬁed, because FOLLOW is only necessary, but they remove the obstacle
+it records.
+4. (Q4) So a computability condition on credence functions that is ﬁt to secure
+rule-following has the form ∃ parameters ∀ reachable states, not ∀ states ∃
+parameters.
+Q4 is the thesis. The conditions in Q3 are properties of individual credence
+functions once the parameters are ﬁxed. To that extent the orthodox claim that
+computability constraints attach to credence functions survives. What does not
+survive is the idea that they can be stated prior by prior with the parameters left
+open. The ﬁxed parameters are answerable to the agent’s whole reachable space.
+Strictly, the condition is a property of agents: of a procedure together with a
+reachable space. A given credence function, for instance 𝜇𝑀0
+ for a halting 𝑀0 , lies
+in 𝒞𝐿  for 𝐿 of order 23𝑛 . So it can belong to an agent who satisﬁes the condition,
+and also to one who does not, according to what else each agent can reach.
+The ﬁxed-prior agent. For an agent whose prior is ﬁxed and changes only by
+(U), the per-prior requirement is all that FOLLOW asks, since its reachable states
+are posteriors of one prior. A program computing that prior’s kernel then updates
+every case, as an adding machine handles every pair of numbers. The present
+thesis concerns agents that adopt and mix. Much real learning is of this kind:
+forming a model from data, accepting a model from another agent, extending the
+hypothesis space when becoming aware of new possibilities, or averaging over a
+countable family of models. For such agents the prior is among the inputs to the
+updating procedure.
+Stored kernels. A format that stores a kernel with each state is closed under (U),
+but not under (X). Re-weighting mixture components after an observation needs
+the components’ densities for the observation, and a stored kernel does not
+provide them. Proposition 2’s family is itself a computable countable mixture of
+components with trivial kernels.Is the thesis deﬁnitional? Given FOLLOW, Q4 follows quickly. The substantive
+inputs are three. The ﬁrst is FOLLOW’s quantiﬁcation over reachable states,
+which I have defended for adopting and mixing agents. The second is Proposition
+2, which shows that the gap between the two quantiﬁer orders is not empty for
+families of a natural kind. The third is Propositions 3 and 4, which show that each
+route across the gap has a recognisable epistemic cost: - ﬁxed constants restrict
+which priors may be adopted; - supplied data must come with each prior and
+cannot always be computed from it; - a regular channel changes what is learned.
+None of the three is free. An agent that wants its priors over hypotheses
+unrestricted, and needs no extra data about them, must take the third route: it
+must learn only through ﬁxed regular channels, and so treat what it learns as
+readings with slack.
+5. Objections
+Finite precision. A computable agent never receives an exact real, so perhaps
+the rule it follows is ratio conditionalization on the rational intervals it receives.
+That is discrete evidence. It is correct if the agent’s model of how intervals are
+reported is ignorable, for example under coarsening at random together with
+distinct parameters (Heitjan and Rubin 1991). It is computable if the intervals
+have null boundaries under the prior; for priors with atoms, the probability of a
+closed interval need not be computable. Along a ﬁxed nested partition, such as
+the dyadic intervals containing 𝑦, the resulting posteriors converge almost surely
+to a version of the exact posterior (Lévy’s upward theorem). The intervals an
+agent actually receives from a Cauchy name are not those of a ﬁxed ﬁltration.
+When 𝑃𝑌  has a density, Lebesgue’s diﬀerentiation theorem covers them instead,
+because the 𝑖-th interval contains 𝑦, has length 21− 𝑖  and lies within 21− 𝑖  of 𝑦. On
+Proposition 2’s family the rate of convergence depends on the halting time, so it is
+not computable uniformly. I accept the convergence result as the sense in which
+the exact rule governs bounded agents as an ideal. It does not supply a uniform
+procedure for the exact rule, which is what following it would require.
+From capacity to norm. The conclusion is conditional. If conditionalization is to
+be a rule that an adopting or mixing computable agent follows, then any
+computability condition that secures this must have ﬁxed parameters across its
+reachable states. Nothing here tells an ideal reasoner what to believe. Section 3.3
+shows, however, that the failure has a cost the orthodox view itself counts.
+Dutch books for the positive routes. On routes (a) and Proposition 4, the agent
+Kolmogorov-conditionalizes its own prior on what it learns. Taking the posterior
+on 𝐻× 𝑌 to be the proper version 𝜅(𝑦) ⊗𝛿𝑦 , Rescorla’s theorems give no handle
+against it, and neither does the result of Meehan and Zhang (2022), which
+concerns improper versions. On route (b), the agent conditionalizes on the
+reading. If what it really learns is the exact value of 𝑍, route (b) is notconditionalization on its total evidence, and the Dutch book theorem plausibly
+applies. Route (b) is a solution only for an agent whose evidence really is the
+reading.
+The evaluative ideal. If Kolmogorov conditionalization was never meant as an
+instruction, nothing here touches it.
+6. Conclusion
+The noncomputability of conditioning invites the per-prior requirement: hold only
+priors whose conditional distributions are computable. For an agent that can
+adopt priors given as programs, or mix them countably, this requirement can hold
+of every reachable prior while no single procedure updates them all. Such an
+agent, whatever ﬁxed procedure it uses, is exposed to a Dutch book in some
+reachable state. What restores a single procedure is regularity with ﬁxed
+parameters: a class with a ﬁxed modulus, data supplied with each prior, or a ﬁxed
+regular channel. The computability condition ﬁt for a rule-following agent has the
+form “some parameters suﬀice for every reachable state”. The weaker form,
+“every state meets some parameters”, does not. Exact conditionalization survives
+as an ideal, approached almost surely by followable updates.
+Appendix. Proof of Proposition 2
+Let 𝑅 be a representation of 𝜇𝑀  computable uniformly in 𝑀, and let 𝑈 be correct
+on every 𝜇𝑀  given by 𝑅. Measures on {0,1} are compared in total variation, and 𝑈
+’s output is projected onto 𝐼. Projection does not increase distances.
+The machine. By the recursion theorem, let 𝑀*  know its own index, and hence
+𝑒* = 𝑅(𝑀*). 𝑀*  dovetails a search for two things: - a ﬁnite sequence 𝜏 of rationals,
+together with a rational interval 𝐾 ⊆[0,1] of width 𝑟>0, lying inside every ball
+(𝑞𝑖 −2−𝑖, 𝑞𝑖 +2−𝑖) for 𝑞𝑖  in 𝜏, so that every point of 𝐾 has a name extending 𝜏 (a
+decidable condition); - a halting computation of 𝑈 on 𝑒*  that reads only 𝜏 from the
+oracle and outputs, at precision 2−4 , a measure 𝑚 with 𝑑(𝑚, 𝛿0)<1/8.
+When the search succeeds, 𝑀*  idles until a step 𝑚*  such that 𝑛= 𝑚* +2 satisﬁes
+2−(𝑛−1) < 𝑟/2, and then halts. Any part of 𝑒*  that the found computation evaluated
+simulates 𝑀*  only for fewer steps than 𝑀*  had run when the search ended, and so
+for fewer than 𝑚*  steps. That computation is therefore also 𝑈’s computation on
+the actual 𝜇𝑀* .
+The search succeeds. Otherwise 𝑀*  never halts, 𝜇𝑀* = 𝐴, and the true posterior
+is 𝛿0 . - Take 𝑧 ∈(0,1) in the measure-one set where 𝑈 is correct, and a name of 𝑧
+with |𝑞𝑖 − 𝑧|<2−𝑖−1 . - 𝑈 outputs, at precision 2−4 , a measure within 1/16 of 𝛿0 , after
+reading a ﬁnite segment 𝜏 of this name. - Every 𝑥 with |𝑥− 𝑧|<2−|𝜏|−1  lies in everyball named by 𝜏. - So a rational interval 𝐾 ⊆[0,1] around 𝑧 qualiﬁes, and the
+dovetailed search ﬁnds some pair.
+𝑈 errs. - 𝑈’s computation depends only on 𝑒*  and 𝜏, so 𝑈 outputs 𝑚 on every name
+extending 𝜏, and hence at every 𝑧 ∈ 𝐾. - Since 2−(𝑛−1) < 𝑟/2, 𝐾 contains a dyadic
+interval of length 2−(𝑛−1) , which ﬁxes binary digits 1 to 𝑛−1. Inside it lies an
+interval of 𝐸𝑛 , on whose central half 𝑓𝑛 ≥2𝑛+1 . - There,
+𝑃(𝐼=1 ∣ 𝑧)≥2/((1−2−𝑛)+2)>2/3. - The output 𝑚 is within 1/8 of 𝛿0 , so it is more
+than 2/3−1/8 from the truth. 𝑈’s limiting output is within 1/16 of 𝑚, so it is more
+than 2/3−1/8−1/16>0 from the truth. - This happens on a set of positive Lebesgue
+measure. Since 𝑃𝑍 ≥(1−2−𝑛)Leb on [0,1], the set also has positive 𝑃𝑍 -measure,
+which contradicts correctness.
+References
+Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2011.
+Noncomputable conditional distributions. In Proceedings of the 26th Annual IEEE
+Symposium on Logic in Computer Science (LICS 2011), 107-116.
+Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2017. On
+computability and disintegration. Mathematical Structures in Computer Science
+27(8): 1287-1314.
+Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2019. On the
+computability of conditional probability. Journal of the ACM 66(3), Article 23: 1-
+40.
+Heitjan, Daniel F. and Donald B. Rubin. 1991. Ignorability and coarse data. The
+Annals of Statistics 19(4): 2244-2253.
+Hoyrup, Mathieu, Cristóbal Rojas and Klaus Weihrauch. 2012. Computability of
+the Radon-Nikodym derivative. Computability 1(1): 3-13.
+Huttegger, Simon M., Sean Walsh and Francesca Zaﬀora Blando. 2026. Bayesian
+convergence for computably bounded agents. Philosophy and Phenomenological
+Research 112(1): 307-324. doi:10.1111/phpr.70079.
+Kolmogorov, Andrei N. 1933. Grundbegriﬀe der Wahrscheinlichkeitsrechnung.
+Berlin: Springer.
+Kripke, Saul A. 1982. Wittgenstein on Rules and Private Language. Cambridge,
+MA: Harvard University Press.
+Lopez-Wild, Josiah. 2026. Computable Bayesian epistemology. Philosophy of
+Science. doi:10.1017/psa.2026.10273.
+Marr, David. 1982. Vision. San Francisco: W. H. Freeman.Meehan, Alexander and Snow Zhang. 2022. Kolmogorov conditionalizers can be
+Dutch booked (if and only if they are evidentially uncertain). The Review of
+Symbolic Logic 15(3): 722-757.
+Rescorla, Michael. 2018. A Dutch book theorem and converse Dutch book
+theorem for Kolmogorov conditionalization. The Review of Symbolic Logic 11(4):
+705-735.
+Rescorla, Michael. 2025. Non-factive Kolmogorov conditionalization. The Review
+of Symbolic Logic 18(1): 186-212. doi:10.1017/S1755020323000345.
+Shan, Chung-chieh and Norman Ramsey. 2017. Exact Bayesian inference by
+symbolic disintegration. In Proceedings of the 44th ACM SIGPLAN Symposium on
+Principles of Programming Languages (POPL 2017), 130-144.

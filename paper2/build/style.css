@@ -1,0 +1,5 @@
+body{font-family:"DejaVu Serif",Georgia,serif;font-size:11pt;line-height:1.45;max-width:42em;margin:0 auto;color:#000;background:#fff}
+h1.title{font-size:17pt;text-align:center;margin-bottom:1.2em}
+h1{font-size:13.5pt;margin-top:1.4em} h2{font-size:12pt}
+p{text-align:justify} math{font-size:105%}
+@page{size:A4;margin:2.2cm}

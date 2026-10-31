@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Following Conditionalization: Per-Prior Computability Is Not Enough</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Following Conditionalization: Per-Prior Computability
+Is Not Enough</h1>
+</header>
+<p><strong>Abstract.</strong> Ackerman, Freer and Roy showed that some
+computable priors have conditional distributions that no algorithm can
+compute. A natural response is to require that a computable agent’s
+prior have computable conditional distributions. I show that, for an
+agent who may adopt new priors (for instance models given as programs)
+or form countable mixtures of priors, this per-prior requirement does
+not make conditionalization a rule the agent can follow. I construct a
+uniformly computable family of priors, built from a uniform law and a
+comb of tents. Each member has a continuous, computable posterior on an
+exact observation, yet no single procedure updates them all, and so any
+fixed updating procedure is, in some state the agent can reach, exposed
+to a Dutch book. What restores a single procedure is a regularity
+condition with fixed parameters. The thesis is about quantifier order. A
+condition of the form “each prior is regular to some degree” does not
+suffice. A condition of the form “there is a degree of regularity that
+every reachable prior meets” does. The uniformity can come from three
+sources:</p>
+<ul>
+<li>fixed constants in the class of admissible priors;</li>
+<li>regularity data supplied with each prior;</li>
+<li>a regular model of the evidence source, which changes the
+evidence.</li>
+</ul>
+<p>So computability constrains rule-following credence only through
+conditions that are uniform across the states an agent can come to hold.
+The ideal reading of conditionalization is untouched.</p>
+<h1 id="introduction">1. Introduction</h1>
+<p>When a Bayesian agent learns that a continuous quantity took the
+value
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+the learned event has probability zero and the ratio formula is silent.
+The standard answer is Kolmogorov conditionalization. The new credence
+is given by a regular conditional distribution: a kernel
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>↦</mo><mi>P</mi><mrow><mo stretchy="true" form="prefix">[</mo><mspace width="0.167em"></mspace><mo>⋅</mo><mo>∣</mo><mi>Y</mi><mo>=</mo><mi>y</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y \mapsto P[\,\cdot \mid Y = y]</annotation></semantics></math>
+that disintegrates the prior and is fixed up to observations of measure
+zero. (Kolmogorov 1933 gives the measure-theoretic notion of conditional
+probability; regular versions came later.) Rescorla (2018) proves Dutch
+book and converse Dutch book theorems for this rule, and Rescorla (2025)
+extends them to scenarios in which the conditioning proposition may be
+false.</p>
+<p>Ackerman, Freer and Roy (2011, 2019; hereafter AFR) showed that the
+rule can outrun computation. There are computable random variables
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>X</mi><annotation encoding="application/x-tex">X</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
+whose conditional distribution of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>X</mi><annotation encoding="application/x-tex">X</annotation></semantics></math>
+given
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
+is not computable on any set of measure one. Computability has been used
+to constrain credence functions in other respects. Lopez-Wild (2026)
+argues that, on countably generated spaces, there are no computable
+merely finitely additive probability measures, and Huttegger, Walsh and
+Zaffora Blando (2026) study convergence to the truth for computable
+priors.</p>
+<p>A response to AFR then suggests itself: a computable agent must hold
+a prior whose conditional distributions are computable. I call this the
+<em>per-prior requirement</em>. I treat it as a natural position rather
+than one I attribute to the authors just cited. Specialists in
+computable analysis know that pointwise computability does not give
+uniform computability. The question here is what that distinction means
+for the epistemology of updating, which has not been asked.</p>
+<p>The thesis has four parts.</p>
+<ol type="1">
+<li><strong>Failure of the per-prior requirement for open
+agents</strong> (Proposition 2). Some agents can adopt priors presented
+as programs, or form countable computable mixtures of priors they can
+hold. For such agents the per-prior requirement can hold of every member
+of a reachable family while no single procedure updates them all.</li>
+<li><strong>A Dutch book consequence.</strong> It follows that any fixed
+updating procedure such an agent uses departs from Kolmogorov
+conditionalization, on a set of positive measure, in some reachable
+state. By Rescorla’s theorem the agent is then exposed to a Dutch book
+in that state.</li>
+<li><strong>What suffices</strong> (Propositions 3 and 4). A single
+procedure exists when there is a fixed degree of regularity that every
+reachable state meets, or when equivalent information is supplied with
+each state, or when the evidence comes through a fixed regular
+channel.</li>
+<li><strong>Quantifier order.</strong> The computability condition that
+matters for a rule-following agent has the form “there are constants
+that every reachable state meets”, not “every state meets some
+constants”. Each of the paper’s positive conditions is a property of
+individual credence functions, but with parameters fixed across the
+agent’s reachable space.</li>
+</ol>
+<p>The mathematics is elementary. Proposition 2 is a diagonal argument
+of a known kind: it is a close relative of the non-computability of the
+Radon-Nikodym operator (Hoyrup, Rojas and Weihrauch 2012) and of AFR’s
+results on discontinuous conditional distributions and on the
+non-computability of the disintegration operator (Ackerman, Freer and
+Roy 2019, 2017). The positive results apply AFR’s theorem for bounded
+densities. Practitioners of probabilistic programming already condition
+on continuous data through likelihood densities. For instance, Shan and
+Ramsey (2017) compute disintegrations symbolically, which yields
+density-based conditioning on continuous observations. What is offered
+here is an epistemological consequence. A computability constraint on
+updating cannot be stated prior by prior with existential parameters. It
+needs fixed parameters, and so it is answerable to what else the agent
+could come to believe.</p>
+<p>The scope is limited in four ways.</p>
+<ul>
+<li>Nothing here concerns conditionalization as an evaluative
+ideal.</li>
+<li>Nothing here concerns discrete evidence.</li>
+<li>For an agent with one fixed prior that changes only by
+conditionalization, nothing here goes beyond the per-prior
+requirement.</li>
+<li>I treat a single observation. Iterated observation raises further
+questions, which I leave aside.</li>
+</ul>
+<h1 id="framework">2. Framework</h1>
+<p><strong>Computable measures.</strong> I work in computable
+probability theory.</p>
+<ul>
+<li>Spaces are computable metric spaces.</li>
+<li>A point is given by a Cauchy name: rationals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>1</mn></msub><mo>,</mo><msub><mi>q</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">q_1, q_2, \ldots</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>q</mi><mi>i</mi></msub><mo>−</mo><mi>x</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo>&lt;</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>i</mi></mrow></msup></mrow><annotation encoding="application/x-tex">|q_i - x| &lt; 2^{-i}</annotation></semantics></math>.</li>
+<li>A probability measure is <em>computable</em> if some program, on
+input
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>,
+outputs a finitely supported measure with rational weights on ideal
+points within Prokhorov distance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi></mrow></msup><annotation encoding="application/x-tex">2^{-k}</annotation></semantics></math>
+of it. The index of such a program is a <em>measure
+presentation</em>.</li>
+</ul>
+<p><strong>Credal states and updating.</strong> A credal state is a
+measure on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">H \times Y</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
+collects the hypothesis variables and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
+is the observation the agent is about to learn.</p>
+<ul>
+<li>An <em>updating procedure</em> takes an index of a presentation of a
+credal state, possibly together with further data, and a name of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+as an oracle. It outputs approximations to a posterior over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>.</li>
+<li>It is <em>correct</em> on a state if there is a version
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>
+of the conditional distribution such that, for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Y</mi></msub><annotation encoding="application/x-tex">P_Y</annotation></semantics></math>-almost
+every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+and every name of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+its output converges to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\kappa(y)</annotation></semantics></math>
+at the advertised precision.</li>
+<li>A state is <em>updatable</em> if some procedure is correct on
+it.</li>
+</ul>
+<p><strong>Two readings of the rule.</strong></p>
+<ul>
+<li>On the <em>ideal reading</em>, conditionalization is a standard. The
+correct kernel exists whether or not anyone computes it.</li>
+<li>On the <em>followed reading</em>, it is something the agent does, in
+the way someone adds by following the rule for addition.</li>
+</ul>
+<p>The followed reading is in play when a Bayesian model is offered as
+an algorithmic-level account of how a mind or machine learns, in the
+sense of Marr (1982). It is also in play for systems that actually
+perform the updates.</p>
+<p><strong>Operations.</strong> An agent’s credal state can change in
+three ways:</p>
+<ul>
+<li><strong>(U)</strong> updating;</li>
+<li><strong>(A)</strong> adopting a prior from a class
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒞</mi><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>
+of presentations, such as a model received as a program or built from
+data;</li>
+<li><strong>(X)</strong> forming countable mixtures, with computable
+weights, of uniformly presented states the agent can hold.</li>
+</ul>
+<p>The <em>reachable states</em> are those obtainable from the initial
+state by these operations.</p>
+<p><strong>FOLLOW.</strong> A computable agent follows
+conditionalization only if a single procedure, applied to its states in
+the form its operations deliver them, is correct on every reachable
+state that is updatable.</p>
+<p>FOLLOW is a necessary condition only. It asks for no proof of
+correctness. It places no demand on states that no procedure could
+update. I take the form in which states are delivered, and the set of
+operations, to be facts about the agent’s architecture. For engineered
+systems they are fixed by design. For human learners, which operations
+they have and in what form is an empirical question that I leave open.
+Kripke (1982) argued that which function a physical machine computes,
+and so whether it has malfunctioned, is fixed only relative to the
+program its designer intended. I do not try to answer that worry. I
+stipulate the architecture, and ask what follows given it.</p>
+<h1 id="the-family">3. The family</h1>
+<h2 id="construction">3.1 Construction</h2>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>∈</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">Z \in [0,1]</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">I \in \{0,1\}</annotation></semantics></math>.
+For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n \ge 2</annotation></semantics></math>,
+let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>n</mi></msub><annotation encoding="application/x-tex">E_n</annotation></semantics></math>
+be the set of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+whose binary digits in positions
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math>
+are all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>n</mi></msub><annotation encoding="application/x-tex">E_n</annotation></semantics></math>
+is a union of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{n-1}</annotation></semantics></math>
+intervals of length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mn>2</mn><mi>n</mi></mrow></msup><annotation encoding="application/x-tex">2^{-2n}</annotation></semantics></math>.
+Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>f</mi><mi>n</mi></msub><annotation encoding="application/x-tex">f_n</annotation></semantics></math>
+be the continuous density that places a tent of mass
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><annotation encoding="application/x-tex">2^{-(n-1)}</annotation></semantics></math>
+on each of these intervals. The peak height of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>f</mi><mi>n</mi></msub><annotation encoding="application/x-tex">f_n</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">2^{n+2}</annotation></semantics></math>,
+its slope is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>3</mn><mi>n</mi><mo>+</mo><mn>3</mn></mrow></msup><annotation encoding="application/x-tex">2^{3n+3}</annotation></semantics></math>,
+and on the central half of each interval its value is at least
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{n+1}</annotation></semantics></math>.</p>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><msub><mi>δ</mi><mn>0</mn></msub><mo>⊗</mo><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">b</mi></mrow></mrow><annotation encoding="application/x-tex">A = \delta_0 \otimes \mathrm{Leb}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>n</mi></msub><mo>=</mo><msub><mi>δ</mi><mn>1</mn></msub><mo>⊗</mo><msub><mi>f</mi><mi>n</mi></msub><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">b</mi></mrow></mrow><annotation encoding="application/x-tex">B_n = \delta_1 \otimes f_n\,\mathrm{Leb}</annotation></semantics></math>.
+Both are computable uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>.</p>
+<p>For a Turing machine
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>:</p>
+<ul>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+halts at step
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>,
+let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi>m</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n = m + 2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mi>M</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mi>A</mi><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><msub><mi>B</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\mu_M = (1 - 2^{-n})A + 2^{-n}B_n</annotation></semantics></math>;</li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+never halts,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mi>M</mi></msub><mo>=</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\mu_M = A</annotation></semantics></math>.</li>
+</ul>
+<p>Equivalently,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+is the countable mixture
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∑</mo><mi>n</mi></msub><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><msub><mi>B</mi><mi>n</mi></msub><mo>+</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mo>∑</mo><mi>n</mi></msub><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\sum_n p_n(M)\,B_n + \big(1 - \sum_n p_n(M)\big)A</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p_n(M) = 2^{-n}</annotation></semantics></math>
+if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+halts at step
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n - 2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p_n(M) = 0</annotation></semantics></math>
+otherwise. Each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">p_n(M)</annotation></semantics></math>
+is decidable, and the residual weight is a computable real.</p>
+<p><strong>Lemma 1.</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+is computable uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>,
+and so is its mixture representation (the components
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><msub><mi>B</mi><mn>2</mn></msub><mo>,</mo><msub><mi>B</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">A, B_2, B_3, \ldots</annotation></semantics></math>
+and the weights
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">p_n(M)</annotation></semantics></math>).</p>
+<p><em>Proof.</em> Run
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+steps. If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+has halted, approximate the mixture to within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{-k-1}</annotation></semantics></math>.
+If not, approximate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+to within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{-k-1}</annotation></semantics></math>;
+the omitted weight is at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi><mo>−</mo><mn>3</mn></mrow></msup><annotation encoding="application/x-tex">2^{-k-3}</annotation></semantics></math>,
+and total variation bounds Prokhorov distance.</p>
+<h2 id="each-member-is-tractable-no-procedure-handles-them-all">3.2 Each
+member is tractable; no procedure handles them all</h2>
+<p>The agent observes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
+exactly, so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">H = I</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">Y = Z</annotation></semantics></math>.
+If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+halts, then for each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>M</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>=</mo><mn>1</mn><mo>∣</mo><mi>Z</mi><mo>=</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><msub><mi>f</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><msub><mi>f</mi><mi>n</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">P_M(I = 1 \mid Z = z) = \frac{2^{-n} f_n(z)}{(1 - 2^{-n}) + 2^{-n} f_n(z)}.</annotation></semantics></math></p>
+<p>If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+never halts, the posterior is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>.
+Either way it is a continuous and computable function of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>.
+So every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+satisfies the per-prior requirement.</p>
+<p><strong>Proposition 2.</strong> Fix any representation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+computable uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>,
+such as the measure presentation or the mixture representation of Lemma
+1. Then no single procedure taking that representation as input is
+correct on every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>.</p>
+<p><em>Sketch.</em> Suppose
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+were correct on every member. By the recursion theorem, build a machine
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+that searches for two things:</p>
+<ul>
+<li>a finite segment of a name of an observation, leaving a rational
+interval
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>⊆</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">K \subseteq [0,1]</annotation></semantics></math>
+of possible values;</li>
+<li>a finite run of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+on the representation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><msup><mi>M</mi><mo>*</mo></msup></msub><annotation encoding="application/x-tex">\mu_{M^*}</annotation></semantics></math>
+that reads only that segment and outputs a posterior within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">1/8</annotation></semantics></math>
+of
+“<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">I = 0</annotation></semantics></math>
+for certain”.</li>
+</ul>
+<p>The search must succeed. If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+never halted,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">I = 0</annotation></semantics></math>
+would be certain, and a correct
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+would output that posterior on almost every observation after reading a
+finite segment.</p>
+<p>When the search succeeds,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+halts late enough that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><annotation encoding="application/x-tex">2^{-(n-1)}</annotation></semantics></math>
+is less than half the width of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+run is a fixed finite computation, so it gives the same output on every
+observation in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>.
+But
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>
+contains an interval of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>n</mi></msub><annotation encoding="application/x-tex">E_n</annotation></semantics></math>
+whose central half has positive measure, and on that half the true
+posterior gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">I = 1</annotation></semantics></math>
+probability above
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">2/3</annotation></semantics></math>.
+So
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+is wrong on a set of positive measure. The appendix gives details.</p>
+<p>Three remarks.</p>
+<ol type="1">
+<li>The marginal density of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
+is at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>5</mn><annotation encoding="application/x-tex">5</annotation></semantics></math>
+throughout the family, so a uniform density bound on the observation is
+not enough. What grows without bound is the modulus of continuity.</li>
+<li>Any regularity data that would rescue a procedure, such as a bound
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>f</mi><mi>n</mi></msub><annotation encoding="application/x-tex">f_{n}</annotation></semantics></math>,
+decide whether
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+halts. Run
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+for about
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mo>log</mo><mn>2</mn></msub><annotation encoding="application/x-tex">\log_2</annotation></semantics></math>
+of the bound many steps: if it has not halted by then, it never will. So
+such data cannot be computed from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>.</li>
+<li>The family is reachable by (X), as a countable computable mixture of
+uniformly presented, trivially updatable components. It is reachable by
+(X) provided
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mi>n</mi></msub><annotation encoding="application/x-tex">B_n</annotation></semantics></math>
+are themselves reachable, for instance as adoptable models. It is also
+reachable by (A) for any class
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒞</mi><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>
+that contains it, for example the class of all measure-presented priors
+with continuous bounded densities. Finite mixing of finitely many known
+components does not generate the family. An agent that mixes finitely
+many models and keeps their densities can update the result (Proposition
+3a). The result therefore concerns agents that can adopt priors given as
+programs, or mix countably.</li>
+</ol>
+<h2 id="the-dutch-book-consequence">3.3 The Dutch book consequence</h2>
+<p>Let an agent whose reachable states include the family use any fixed
+procedure
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>.
+By Proposition 2 there is a reachable state
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+update differs from every version of the conditional distribution, on a
+set of observations of positive probability. Extend
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+to a total update rule by assigning any fixed measure wherever it fails
+to converge. The extended rule still differs from every version of the
+conditional distribution on a set of positive probability. Rescorla’s
+(2018) Dutch book theorem, as I read it, applies to an agent whose
+update rule departs from Kolmogorov conditionalization of its own prior
+on a set of positive prior probability. So such an agent is exposed to a
+Dutch book in that state.</p>
+<p>So the failure of uniformity is not only a failure of rule-following.
+It has the pragmatic cost that the orthodox view itself recognises,
+located in a particular state. That location is the orthodox view’s own,
+and I accept it. The present point is that no fixed procedure avoids
+every such state, although each state, taken alone, can be updated
+correctly.</p>
+<h1 id="what-suffices">4. What suffices</h1>
+<h2 id="three-sources-of-uniformity">4.1 Three sources of
+uniformity</h2>
+<p><strong>Proposition 3.</strong></p>
+<ul>
+<li><strong>(a) Supplied regularity data.</strong> Suppose each state is
+given as a measure
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>,
+a computable function
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>h</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">q(h, y)</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mi>q</mi><mspace width="0.167em"></mspace><mi>d</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>ρ</mi><mo>⊗</mo><mi>λ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\int q\,d(\rho \otimes \lambda) = 1</annotation></semantics></math>,
+a rational bound
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>≥</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">c \ge q</annotation></semantics></math>,
+and a computable reference measure
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>,
+so that the state is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mspace width="0.167em"></mspace><mi>ρ</mi><mo>⊗</mo><mi>λ</mi></mrow><annotation encoding="application/x-tex">q\,\rho \otimes \lambda</annotation></semantics></math>.
+Then one procedure is correct on all such states. The posterior
+expectation of a bounded continuous
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mi>g</mi><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>⋅</mo><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi>d</mi><mi>ρ</mi><mspace width="0.167em"></mspace><mi>/</mi><mspace width="0.167em"></mspace><mo>∫</mo><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>⋅</mo><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi>d</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\int g q(\cdot, y)\,d\rho \,/\, \int q(\cdot, y)\,d\rho</annotation></semantics></math>.
+Both integrals involve bounded computable functions with known bounds,
+so they are computable relative to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+uniformly in the data. The denominator is positive for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Y</mi></msub><annotation encoding="application/x-tex">P_Y</annotation></semantics></math>-almost
+every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>.
+This is AFR’s argument for the dominated setting (AFR 2019, positive
+results). For Proposition 2’s family these data are not computable from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+(remark 2 above).</li>
+<li><strong>(b) A fixed regular channel.</strong> Suppose instead the
+agent learns a reading
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>Z</mi><mo>+</mo><mi>ξ</mi></mrow><annotation encoding="application/x-tex">Y = Z + \xi</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ξ</mi><annotation encoding="application/x-tex">\xi</annotation></semantics></math>
+is independent and has a fixed computable bounded density
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>φ</mi><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>.
+Taking
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>,</mo><mi>Z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H = (I, Z)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><msub><mi>μ</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">\rho = \mu_M</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>h</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>φ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo>−</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">q(h, y) = \varphi(y - z)</annotation></semantics></math>
+places the state in case (a), with data computable uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>.
+So one procedure updates every member of the family on the noisy
+reading. This is a case of AFR’s result for conditioning on observations
+corrupted by independent noise; the derivation from (a) needs only that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>φ</mi><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>
+be bounded and computable. It does not update on the exact value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>.
+It solves a different learning problem, in which what is learned is the
+reading.</li>
+</ul>
+<p><strong>Proposition 4 (fixed constants).</strong> Fix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>.
+Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>
+be the class of measures on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">H \times [0,1]</annotation></semantics></math>
+whose density
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>h</mi><mo>,</mo><mo>⋅</mo><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">q(h, \cdot)</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
+given
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>,
+with respect to Lebesgue measure, is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>-Lipschitz
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>-almost
+every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+is the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>-marginal.
+Then one procedure, given only measure presentations, is correct on
+every member of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>.</p>
+<p><em>Sketch.</em></p>
+<ol type="1">
+<li>Each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>h</mi><mo>,</mo><mo>⋅</mo><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">q(h, \cdot)</annotation></semantics></math>
+is a probability density that is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>-Lipschitz,
+so it is bounded by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>L</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">C = 1 + L/2</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Y</mi></msub><annotation encoding="application/x-tex">P_Y</annotation></semantics></math>
+has density at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.</li>
+<li>From the name of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+find
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\delta &gt; 0</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>δ</mi><mo>,</mo><mn>1</mn><mo>−</mo><mi>δ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">y \in (\delta, 1 - \delta)</annotation></semantics></math>.
+This is possible for every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+in the open interval, which has probability one. Take balls
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+around
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+of radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>&lt;</mo><mi>δ</mi></mrow><annotation encoding="application/x-tex">\varepsilon &lt; \delta</annotation></semantics></math>.</li>
+<li>The probability of lying within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>
+of the boundary of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>C</mi><mi>η</mi></mrow><annotation encoding="application/x-tex">4C\eta</annotation></semantics></math>.
+So
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>;</mo><mspace width="0.167em"></mspace><mi>Y</mi><mo>∈</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P(g(H);\, Y \in B)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>Y</mi><mo>∈</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P(Y \in B)</annotation></semantics></math>
+are computable from the measure presentation, uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>.</li>
+<li>By the Lipschitz bound, dividing these by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>ε</mi></mrow><annotation encoding="application/x-tex">2\varepsilon</annotation></semantics></math>
+approximates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mi>g</mi><mspace width="0.167em"></mspace><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>⋅</mo><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi>d</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\int g\,q(\cdot, y)\,d\rho</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>∫</mo><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>⋅</mo><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi>d</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">p(y) = \int q(\cdot, y)\,d\rho</annotation></semantics></math>
+to within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>g</mi><mo stretchy="false" form="postfix">∥</mo><mi>L</mi><mi>ε</mi></mrow><annotation encoding="application/x-tex">\|g\|L\varepsilon</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>ε</mi></mrow><annotation encoding="application/x-tex">L\varepsilon</annotation></semantics></math>.</li>
+<li>Where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p(y) &gt; 0</annotation></semantics></math>,
+which holds
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Y</mi></msub><annotation encoding="application/x-tex">P_Y</annotation></semantics></math>-almost
+surely, a positive lower bound on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">p(y)</annotation></semantics></math>
+is found from these approximations, and the ratio then converges at a
+computable rate.</li>
+<li>Since a probability measure is computable when its integrals of
+bounded Lipschitz test functions are uniformly computable, this yields
+the posterior.</li>
+</ol>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>
+is closed under countable mixtures, because each mixture density is a
+pointwise convex combination of the component densities. So an agent
+confined to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>
+stays there under (A) and (X), provided its adoptable class lies in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>.
+Proposition 2’s family lies in no
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>,
+since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mo>⋅</mo><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>f</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">q(1, \cdot) = f_n</annotation></semantics></math>
+has slope
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>3</mn><mi>n</mi><mo>+</mo><mn>3</mn></mrow></msup><annotation encoding="application/x-tex">2^{3n+3}</annotation></semantics></math>.</p>
+<h2 id="quantifier-order">4.2 Quantifier order</h2>
+<p>The argument combines FOLLOW with the propositions.</p>
+<ol type="1">
+<li><strong>(Q1)</strong> FOLLOW.</li>
+<li><strong>(Q2)</strong> The per-prior requirement says that every
+reachable state is updatable. Equivalently, for each reachable state
+there is some degree of regularity it meets. By Proposition 2, an agent
+can satisfy this while failing FOLLOW.</li>
+<li><strong>(Q3)</strong> The condition “there is an
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+such that every reachable state lies in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>”
+guarantees a single correct procedure (Proposition 4). So does a single
+regular channel for all reachable states (Proposition 3b), or supplied
+data with known bounds (Proposition 3a). These do not show that FOLLOW
+is satisfied, because FOLLOW is only necessary, but they remove the
+obstacle it records.</li>
+<li><strong>(Q4)</strong> So a computability condition on credence
+functions that is fit to secure rule-following has the form
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>
+parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>
+reachable states, not
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>
+states
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>
+parameters.</li>
+</ol>
+<p>Q4 is the thesis. The conditions in Q3 are properties of individual
+credence functions once the parameters are fixed. To that extent the
+orthodox claim that computability constraints attach to credence
+functions survives. What does not survive is the idea that they can be
+stated prior by prior with the parameters left open. The fixed
+parameters are answerable to the agent’s whole reachable space.
+Strictly, the condition is a property of agents: of a procedure together
+with a reachable space. A given credence function, for instance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><msub><mi>M</mi><mn>0</mn></msub></msub><annotation encoding="application/x-tex">\mu_{M_0}</annotation></semantics></math>
+for a halting
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>0</mn></msub><annotation encoding="application/x-tex">M_0</annotation></semantics></math>,
+lies in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒞</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\mathcal{C}_L</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+of order
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>3</mn><mi>n</mi></mrow></msup><annotation encoding="application/x-tex">2^{3n}</annotation></semantics></math>.
+So it can belong to an agent who satisfies the condition, and also to
+one who does not, according to what else each agent can reach.</p>
+<p><strong>The fixed-prior agent.</strong> For an agent whose prior is
+fixed and changes only by (U), the per-prior requirement is all that
+FOLLOW asks, since its reachable states are posteriors of one prior. A
+program computing that prior’s kernel then updates every case, as an
+adding machine handles every pair of numbers. The present thesis
+concerns agents that adopt and mix. Much real learning is of this kind:
+forming a model from data, accepting a model from another agent,
+extending the hypothesis space when becoming aware of new possibilities,
+or averaging over a countable family of models. For such agents the
+prior is among the inputs to the updating procedure.</p>
+<p><strong>Stored kernels.</strong> A format that stores a kernel with
+each state is closed under (U), but not under (X). Re-weighting mixture
+components after an observation needs the components’ densities for the
+observation, and a stored kernel does not provide them. Proposition 2’s
+family is itself a computable countable mixture of components with
+trivial kernels.</p>
+<p><strong>Is the thesis definitional?</strong> Given FOLLOW, Q4 follows
+quickly. The substantive inputs are three. The first is FOLLOW’s
+quantification over reachable states, which I have defended for adopting
+and mixing agents. The second is Proposition 2, which shows that the gap
+between the two quantifier orders is not empty for families of a natural
+kind. The third is Propositions 3 and 4, which show that each route
+across the gap has a recognisable epistemic cost:</p>
+<ul>
+<li>fixed constants restrict which priors may be adopted;</li>
+<li>supplied data must come with each prior and cannot always be
+computed from it;</li>
+<li>a regular channel changes what is learned.</li>
+</ul>
+<p>None of the three is free. An agent that wants its priors over
+hypotheses unrestricted, and needs no extra data about them, must take
+the third route: it must learn only through fixed regular channels, and
+so treat what it learns as readings with slack.</p>
+<h1 id="objections">5. Objections</h1>
+<p><strong>Finite precision.</strong> A computable agent never receives
+an exact real, so perhaps the rule it follows is ratio
+conditionalization on the rational intervals it receives. That is
+discrete evidence. It is correct if the agent’s model of how intervals
+are reported is ignorable, for example under coarsening at random
+together with distinct parameters (Heitjan and Rubin 1991). It is
+computable if the intervals have null boundaries under the prior; for
+priors with atoms, the probability of a closed interval need not be
+computable. Along a fixed nested partition, such as the dyadic intervals
+containing
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+the resulting posteriors converge almost surely to a version of the
+exact posterior (Lévy’s upward theorem). The intervals an agent actually
+receives from a Cauchy name are not those of a fixed filtration. When
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Y</mi></msub><annotation encoding="application/x-tex">P_Y</annotation></semantics></math>
+has a density, Lebesgue’s differentiation theorem covers them instead,
+because the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>-th
+interval contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+has length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>1</mn><mo>−</mo><mi>i</mi></mrow></msup><annotation encoding="application/x-tex">2^{1-i}</annotation></semantics></math>
+and lies within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>1</mn><mo>−</mo><mi>i</mi></mrow></msup><annotation encoding="application/x-tex">2^{1-i}</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>.
+On Proposition 2’s family the rate of convergence depends on the halting
+time, so it is not computable uniformly. I accept the convergence result
+as the sense in which the exact rule governs bounded agents as an ideal.
+It does not supply a uniform procedure for the exact rule, which is what
+following it would require.</p>
+<p><strong>From capacity to norm.</strong> The conclusion is
+conditional. If conditionalization is to be a rule that an adopting or
+mixing computable agent follows, then any computability condition that
+secures this must have fixed parameters across its reachable states.
+Nothing here tells an ideal reasoner what to believe. Section 3.3 shows,
+however, that the failure has a cost the orthodox view itself
+counts.</p>
+<p><strong>Dutch books for the positive routes.</strong> On routes (a)
+and Proposition 4, the agent Kolmogorov-conditionalizes its own prior on
+what it learns. Taking the posterior on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">H \times Y</annotation></semantics></math>
+to be the proper version
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⊗</mo><msub><mi>δ</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">\kappa(y) \otimes \delta_y</annotation></semantics></math>,
+Rescorla’s theorems give no handle against it, and neither does the
+result of Meehan and Zhang (2022), which concerns improper versions. On
+route (b), the agent conditionalizes on the reading. If what it really
+learns is the exact value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>,
+route (b) is not conditionalization on its total evidence, and the Dutch
+book theorem plausibly applies. Route (b) is a solution only for an
+agent whose evidence really is the reading.</p>
+<p><strong>The evaluative ideal.</strong> If Kolmogorov
+conditionalization was never meant as an instruction, nothing here
+touches it.</p>
+<h1 id="conclusion">6. Conclusion</h1>
+<p>The noncomputability of conditioning invites the per-prior
+requirement: hold only priors whose conditional distributions are
+computable. For an agent that can adopt priors given as programs, or mix
+them countably, this requirement can hold of every reachable prior while
+no single procedure updates them all. Such an agent, whatever fixed
+procedure it uses, is exposed to a Dutch book in some reachable state.
+What restores a single procedure is regularity with fixed parameters: a
+class with a fixed modulus, data supplied with each prior, or a fixed
+regular channel. The computability condition fit for a rule-following
+agent has the form “some parameters suffice for every reachable state”.
+The weaker form, “every state meets some parameters”, does not. Exact
+conditionalization survives as an ideal, approached almost surely by
+followable updates.</p>
+<h1 id="appendix.-proof-of-proposition-2">Appendix. Proof of Proposition
+2</h1>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
+be a representation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+computable uniformly in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>,
+and let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+be correct on every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>M</mi></msub><annotation encoding="application/x-tex">\mu_M</annotation></semantics></math>
+given by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>.
+Measures on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{0,1\}</annotation></semantics></math>
+are compared in total variation, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+output is projected onto
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>.
+Projection does not increase distances.</p>
+<p><strong>The machine.</strong> By the recursion theorem, let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+know its own index, and hence
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mo>*</mo></msup><mo>=</mo><mi>R</mi><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>M</mi><mo>*</mo></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">e^* = R(M^*)</annotation></semantics></math>.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+dovetails a search for two things:</p>
+<ul>
+<li>a finite sequence
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+of rationals, together with a rational interval
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>⊆</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">K \subseteq [0,1]</annotation></semantics></math>
+of width
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r &gt; 0</annotation></semantics></math>,
+lying inside every ball
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>i</mi></mrow></msup><mo>,</mo><msub><mi>q</mi><mi>i</mi></msub><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>i</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(q_i - 2^{-i}, q_i + 2^{-i})</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mi>i</mi></msub><annotation encoding="application/x-tex">q_i</annotation></semantics></math>
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>,
+so that every point of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>
+has a name extending
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+(a decidable condition);</li>
+<li>a halting computation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mo>*</mo></msup><annotation encoding="application/x-tex">e^*</annotation></semantics></math>
+that reads only
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+from the oracle and outputs, at precision
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup><annotation encoding="application/x-tex">2^{-4}</annotation></semantics></math>,
+a measure
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>m</mi><mo>,</mo><msub><mi>δ</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>&lt;</mo><mn>1</mn><mi>/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">d(m, \delta_0) &lt; 1/8</annotation></semantics></math>.</li>
+</ul>
+<p>When the search succeeds,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+idles until a step
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>m</mi><mo>*</mo></msup><annotation encoding="application/x-tex">m^*</annotation></semantics></math>
+such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><msup><mi>m</mi><mo>*</mo></msup><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n = m^* + 2</annotation></semantics></math>
+satisfies
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><mo>&lt;</mo><mi>r</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">2^{-(n-1)} &lt; r/2</annotation></semantics></math>,
+and then halts. Any part of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mo>*</mo></msup><annotation encoding="application/x-tex">e^*</annotation></semantics></math>
+that the found computation evaluated simulates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+only for fewer steps than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+had run when the search ended, and so for fewer than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>m</mi><mo>*</mo></msup><annotation encoding="application/x-tex">m^*</annotation></semantics></math>
+steps. That computation is therefore also
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+computation on the actual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><msup><mi>M</mi><mo>*</mo></msup></msub><annotation encoding="application/x-tex">\mu_{M^*}</annotation></semantics></math>.</p>
+<p><strong>The search succeeds.</strong> Otherwise
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>M</mi><mo>*</mo></msup><annotation encoding="application/x-tex">M^*</annotation></semantics></math>
+never halts,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><msup><mi>M</mi><mo>*</mo></msup></msub><mo>=</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\mu_{M^*} = A</annotation></semantics></math>,
+and the true posterior is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>δ</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\delta_0</annotation></semantics></math>.</p>
+<ul>
+<li>Take
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">z \in (0,1)</annotation></semantics></math>
+in the measure-one set where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+is correct, and a name of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>q</mi><mi>i</mi></msub><mo>−</mo><mi>z</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo>&lt;</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">|q_i - z| &lt; 2^{-i-1}</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+outputs, at precision
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup><annotation encoding="application/x-tex">2^{-4}</annotation></semantics></math>,
+a measure within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>16</mn></mrow><annotation encoding="application/x-tex">1/16</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>δ</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\delta_0</annotation></semantics></math>,
+after reading a finite segment
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+of this name.</li>
+<li>Every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mo>−</mo><mi>z</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo>&lt;</mo><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>τ</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">|x - z| &lt; 2^{-|\tau|-1}</annotation></semantics></math>
+lies in every ball named by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>.</li>
+<li>So a rational interval
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>⊆</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">K \subseteq [0,1]</annotation></semantics></math>
+around
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+qualifies, and the dovetailed search finds some pair.</li>
+</ul>
+<p><strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+errs.</strong></p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+computation depends only on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mo>*</mo></msup><annotation encoding="application/x-tex">e^*</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>,
+so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
+outputs
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+on every name extending
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>,
+and hence at every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">z \in K</annotation></semantics></math>.</li>
+<li>Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><mo>&lt;</mo><mi>r</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">2^{-(n-1)} &lt; r/2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>
+contains a dyadic interval of length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><annotation encoding="application/x-tex">2^{-(n-1)}</annotation></semantics></math>,
+which fixes binary digits
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math>.
+Inside it lies an interval of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>n</mi></msub><annotation encoding="application/x-tex">E_n</annotation></semantics></math>,
+on whose central half
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>n</mi></msub><mo>≥</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">f_n \ge 2^{n+1}</annotation></semantics></math>.</li>
+<li>There,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>=</mo><mn>1</mn><mo>∣</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≥</mo><mn>2</mn><mi>/</mi><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mn>2</mn><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mn>2</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">P(I = 1 \mid z) \ge 2/\big((1 - 2^{-n}) + 2\big) &gt; 2/3</annotation></semantics></math>.</li>
+<li>The output
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+is within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">1/8</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>δ</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\delta_0</annotation></semantics></math>,
+so it is more than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>/</mi><mn>3</mn><mo>−</mo><mn>1</mn><mi>/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">2/3 - 1/8</annotation></semantics></math>
+from the truth.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>’s
+limiting output is within
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>16</mn></mrow><annotation encoding="application/x-tex">1/16</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>,
+so it is more than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>/</mi><mn>3</mn><mo>−</mo><mn>1</mn><mi>/</mi><mn>8</mn><mo>−</mo><mn>1</mn><mi>/</mi><mn>16</mn><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">2/3 - 1/8 - 1/16 &gt; 0</annotation></semantics></math>
+from the truth.</li>
+<li>This happens on a set of positive Lebesgue measure. Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>Z</mi></msub><mo>≥</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">b</mi></mrow></mrow><annotation encoding="application/x-tex">P_Z \ge (1 - 2^{-n})\,\mathrm{Leb}</annotation></semantics></math>
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math>,
+the set also has positive
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>Z</mi></msub><annotation encoding="application/x-tex">P_Z</annotation></semantics></math>-measure,
+which contradicts correctness.</li>
+</ul>
+<h1 id="references">References</h1>
+<p>Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2011.
+Noncomputable conditional distributions. In <em>Proceedings of the 26th
+Annual IEEE Symposium on Logic in Computer Science (LICS 2011)</em>,
+107-116.</p>
+<p>Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2017. On
+computability and disintegration. <em>Mathematical Structures in
+Computer Science</em> 27(8): 1287-1314.</p>
+<p>Ackerman, Nathanael L., Cameron E. Freer and Daniel M. Roy. 2019. On
+the computability of conditional probability. <em>Journal of the
+ACM</em> 66(3), Article 23: 1-40.</p>
+<p>Heitjan, Daniel F. and Donald B. Rubin. 1991. Ignorability and coarse
+data. <em>The Annals of Statistics</em> 19(4): 2244-2253.</p>
+<p>Hoyrup, Mathieu, Cristóbal Rojas and Klaus Weihrauch. 2012.
+Computability of the Radon-Nikodym derivative. <em>Computability</em>
+1(1): 3-13.</p>
+<p>Huttegger, Simon M., Sean Walsh and Francesca Zaffora Blando. 2026.
+Bayesian convergence for computably bounded agents. <em>Philosophy and
+Phenomenological Research</em> 112(1): 307-324.
+doi:10.1111/phpr.70079.</p>
+<p>Kolmogorov, Andrei N. 1933. <em>Grundbegriffe der
+Wahrscheinlichkeitsrechnung</em>. Berlin: Springer.</p>
+<p>Kripke, Saul A. 1982. <em>Wittgenstein on Rules and Private
+Language</em>. Cambridge, MA: Harvard University Press.</p>
+<p>Lopez-Wild, Josiah. 2026. Computable Bayesian epistemology.
+<em>Philosophy of Science</em>. doi:10.1017/psa.2026.10273.</p>
+<p>Marr, David. 1982. <em>Vision</em>. San Francisco: W. H. Freeman.</p>
+<p>Meehan, Alexander and Snow Zhang. 2022. Kolmogorov conditionalizers
+can be Dutch booked (if and only if they are evidentially uncertain).
+<em>The Review of Symbolic Logic</em> 15(3): 722-757.</p>
+<p>Rescorla, Michael. 2018. A Dutch book theorem and converse Dutch book
+theorem for Kolmogorov conditionalization. <em>The Review of Symbolic
+Logic</em> 11(4): 705-735.</p>
+<p>Rescorla, Michael. 2025. Non-factive Kolmogorov conditionalization.
+<em>The Review of Symbolic Logic</em> 18(1): 186-212.
+doi:10.1017/S1755020323000345.</p>
+<p>Shan, Chung-chieh and Norman Ramsey. 2017. Exact Bayesian inference
+by symbolic disintegration. In <em>Proceedings of the 44th ACM SIGPLAN
+Symposium on Principles of Programming Languages (POPL 2017)</em>,
+130-144.</p>
+</body>
+</html>
