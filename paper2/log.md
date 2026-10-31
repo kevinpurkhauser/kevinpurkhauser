@@ -28,3 +28,39 @@
 
 ## Human choice -> human_inputs.md entries 7-8
 - Human chose option 2: finish Paper 2 from search results only (hosts still blocked), on the C08/S5 line (computability constraints on priors). This overrides the earlier "Partial" pause. The pipeline continues with Phases 3-11; every limitation from snippet-only access is recorded.
+
+## Phase 2 decisive check -> 02c_S1_decisive_check.md
+- S1-feasibility leans killed (explicit separating game confirmed at snippet level; a reported explicit Lean-verified counterexample, arXiv 2610.10248).
+
+## Phase 3 -> 03_novelty.md
+- Thesis T2 developed from the C08/S5 line so that it answers the S5 refutation: certification rather than satisfiability; no rival norm; restricted ought-implies-can.
+- About 12 searches. No source found for non-certifiability, representation-dependence or the noise requirement. Closest: AFR 2019 and 2017, Lopez-Wild, Huttegger-Walsh-Zaffora Blando, Mercier-Lopez-Wild-Spiegel 2026.
+
+## Phase 4 -> 04_formal.md, formal/
+- Own elementary results:
+  - Lemma 1 (uniform weights);
+  - Lemma 2 (recovery);
+  - Proposition 1 (GOOD = complement of the halting set);
+  - Corollaries 1 (no theory certifies) and 2 (fragility);
+  - Lemma 3 (channel class closure);
+  - Lemma 4 (no noise floor: bounded iff E[1/s] < oo).
+- Code: exact-arithmetic check of the mixture identities (2,000 instances), the w_M approximation bound, the Z3 skeleton (valid; invalid without the key premise), and the sympy check of Lemma 4. All pass.
+- "Claims the paper must not make" list written.
+
+## Phase 5 -> 05_steelman.md, 05_advocate_case.md, 05_author_opposing_case.md
+- Advocate subagent wrote the opposing case. The author agent wrote its own (after the advocate's arrived: contamination noted).
+- Turing judge guessed wrong (named the advocate as the impostor at 65 percent) but rated the advocate's case stronger. Remedy: the union of both notes was used, with every high-damage objection answered.
+- Central obstacle ("satisfying vs showing") led to Proposition 1' (no sound general updater) and the FOLLOW principle with diachronic uniformity.
+
+## Phase 6 -> 06a, 06b, 06c
+- Three outlines with critiques. Final budget 5,800 words.
+
+## Phase 7 -> 07_draft_v1.md, 07_draft_v2.md
+- v1: full draft, 5,221 words including references.
+- v2 (self-correction before the panel): the evidence-first argument N3 in v1 was wrong, because evidence-first states do extend to dominated new sources. Replaced by:
+  - an exact-source version of Proposition 1 (fixed trivial projection source);
+  - the noise-or-restricted-world-prior dilemma ("slack").
+  Thesis 3 and abstract updated. 5,539 words including references.
+
+## Phase 8 calibration -> referee/role_prompts_v1.md, referee/00_calibration_key.md
+- Two decoys, three planted errors each. Roles A and B on decoy 1, C and D on decoy 2.
