@@ -75,3 +75,32 @@ Changes in draft v4 (a substantial rewrite):
 - I21: the "same tractable states" claim removed.
 - I22: the hypothesis/observation split is made part of the presentation.
 - I11, I12, I13: Corollary 1 is now in Appendix B with an arithmetic hypothesis; the Rice-Shapiro remark is dropped.
+
+## Round 3 (draft v4): fresh referees A-D (referee/r3_*.md); adjudication pending
+
+| Role | Verdict | O / C / I |
+|---|---|---|
+| A | major | 4 / 5 / 4 |
+| B | major (bordering on reject) | 5 / 5 / 4 |
+| C | major | 5 / 6 / 5 |
+| D | major | 5 / 6 / 5 |
+
+All four referees made the same main point: the contrast between Propositions 2 and 3 is whether a density with a bound is presented, not whether the evidence is exact. §5.3 already conceded this. They also agreed that:
+- the interval format is discrete evidence, and is false for priors with atoms;
+- coarsening at random is needed;
+- FOLLOW needs a closure clause;
+- Proposition 2 used binary digits, not Cauchy names;
+- the Hoyrup-Rojas-Weihrauch Radon-Nikodym result needs citing;
+- the martingale (Lévy) convergence of interval posteriors needs conceding;
+- the Meehan-Zhang application was wrong.
+
+Draft v5 response (full rewrite, about 4,170 words excluding the bibliography):
+- **Thesis restated:** per-prior constraints do not suffice (Proposition 2); presented densities do (Proposition 3); followability constrains the representation, not the credence function. "No exact dependence" is stated without labels, as a sufficiency claim.
+- **Proposition 3** now includes case (a), exact observation with the density in the prior. So exactness is not the obstacle.
+- **Framework:** FOLLOW gets a closure clause. Formats and the measure and density formats are defined precisely. Points are given by Cauchy names.
+- **Proof:** Proposition 2 is repaired for Cauchy names, with the index shift n = m + 2. The unnecessary "computation is genuine" paragraph is dropped.
+- **Interval route:** recast as discrete evidence, with coarsening at random (Heitjan and Rubin 1991) and null boundaries. Lévy convergence is conceded.
+- **Literature and objections:** Hoyrup-Rojas-Weihrauch is cited. The Kripke objection is engaged. Meehan and Zhang is dropped. Marr 1982 is added.
+- **Removed:** Appendix B (non-recognisability, Gödel) and the remaining "noise" framing.
+
+## Round 4 (draft v5): launched
