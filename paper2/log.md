@@ -14,3 +14,5 @@
 - 24 candidate theses written (abstracts about 120-160 words, shorter than the 250 the prompt asked for, to keep the tournament packet readable).
 - Quick novelty check (about 20 searches): 6 discarded before the tournament: C15, C18, C20 (substantially in print), C09, C10, C13 (premise contradicted by sources).
 - Tournament: 18 survivors anonymized as T01-T18 (random labels, seed recorded in mapping file 02_tournament_mapping.json); five fresh judge subagents, each 30-35 pairs (each candidate in about 4 pairs per judge), judging on the competition criterion only, no web access.
+- Tournament result (tournament/ranking.md): 164 blind pairwise votes, Bradley-Terry. Top six: C01 (MIP* = RE underdetermination, 18/18), C05 (Bayesian persuasion vs lying/misleading, 16/18), C08 (noncomputable conditionalization, 17/19), C03 (conciliation without peers, 14/17), C14 (awareness growth impossibility, 14/17), C07 (tractability and moderate credence, 12/17). Bottom: C21, C23, C24.
+- Kill round started: six fresh refuter subagents, one per top-six candidate, about 15 searches each, verdict SURVIVED / DAMAGED / KILLED.
